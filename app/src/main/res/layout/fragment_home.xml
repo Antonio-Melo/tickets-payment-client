@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tickets fragment"
+        android:text="Home fragment"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>
