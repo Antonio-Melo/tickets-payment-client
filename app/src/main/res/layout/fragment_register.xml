@@ -1,11 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/register_title"
+        android:text="@string/register_title"
         android:layout_height="wrap_content"
-        android:text="Register fragment"
-        android:layout_centerInParent="true"/>
+        android:layout_width="match_parent"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/register_title_vertical_margin"
+        android:layout_marginBottom="@dimen/register_title_vertical_margin"/>
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent">
 
-</RelativeLayout>
+        <TableRow>
+            <TextView
+                android:id="@+id/register_name_placeholder"
+                android:text="@string/register_name"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/register_text_view_left_margin"/>
+
+            <EditText
+                android:id="@+id/register_name_input"
+                android:layout_weight="3"
+                android:ems="10"
+                android:inputType="textPersonName"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/register_email_placeholder"
+                android:text="@string/register_email"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/register_text_view_left_margin"/>
+
+            <EditText
+                android:id="@+id/register_email_input"
+                android:layout_weight="3"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/register_nif_placeholder"
+                android:text="@string/register_nif"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/register_text_view_left_margin"/>
+
+            <EditText
+                android:id="@+id/register_nif_input"
+                android:layout_weight="3"
+                android:ems="10"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/register_username_placeholder"
+                android:text="@string/register_username"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/register_text_view_left_margin"/>
+
+            <EditText
+                android:id="@+id/register_username_input"
+                android:layout_weight="3"
+                android:ems="10"
+                android:inputType="text" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/register_password_placeholder"
+                android:text="@string/register_password"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/register_text_view_left_margin"/>
+
+            <EditText
+                android:id="@+id/register_password_input"
+                android:layout_weight="3"
+                android:ems="10"
+                android:inputType="textPassword" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/register_credit_card_placeholder"
+                android:text="@string/register_credit_card"
+                android:layout_weight="4"
+                android:layout_marginLeft="@dimen/register_credit_card_title_horizontal_margin"
+                android:layout_marginRight="@dimen/register_credit_card_title_horizontal_margin"
+                android:layout_marginTop="@dimen/register_credit_card_title_vertical_margin"
+                android:layout_marginBottom="@dimen/register_credit_card_title_vertical_margin"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/register_credit_card_type_placeholder"
+                android:text="@string/register_credit_card_type"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/register_text_view_left_margin"/>
+
+            <Spinner
+                android:id="@+id/register_credit_card_type_spinner"
+                android:entries="@array/credit_cards_types"
+                android:layout_weight="3"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/register_credit_card_number_placeholder"
+                android:text="@string/register_credit_card_number"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/register_text_view_left_margin"/>
+
+            <EditText
+                android:id="@+id/register_credit_card_number_input"
+                android:layout_weight="3"
+                android:ems="10"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/register_credit_card_validity_placeholder"
+                android:text="@string/register_credit_card_validity"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/register_text_view_left_margin"/>
+
+            <EditText
+                android:id="@+id/register_credit_card_validity_input"
+                android:layout_weight="3"
+                android:ems="10"
+                android:inputType="date" />
+        </TableRow>
+        <Button
+            android:id="@+id/register_create_account_button"
+            android:text="@string/register_create_account_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/register_create_account_button_horizontal_margin"
+            android:layout_marginRight="@dimen/register_create_account_button_horizontal_margin"
+            android:layout_marginTop="@dimen/register_create_account_button_vertical_margin"/>
+    </TableLayout>
+
+</LinearLayout>

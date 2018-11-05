@@ -5,4 +5,28 @@
     <string name="title_cafetaria">Cafetaria</string>
     <string name="title_register">Register</string>
     <string name="title_login">Login</string>
+
+    <!-- Register fragment begin -->
+    <string name="register_title">Register New Account</string>
+    <string name="register_name">Name</string>
+    <string name="register_email">Email</string>
+    <string name="register_nif">NIF</string>
+    <string name="register_username">Username</string>
+    <string name="register_password">Password</string>
+    <string name="register_credit_card">Credit Card Info</string>
+    <string name="register_credit_card_type">Type</string>
+
+    <string-array name="credit_cards_types">
+        <item>VISA</item>
+        <item>MASTERCARD</item>
+        <item>AMERICAN EXPRESS</item>
+        <item>DINERSCLUB</item>
+        <item>DISCOVER</item>
+        <item>JCB</item>
+    </string-array>
+
+    <string name="register_credit_card_number">Number</string>
+    <string name="register_credit_card_validity">Validity</string>
+    <string name="register_create_account_button">Create Account</string>
+    <!-- Register fragment end -->
 </resources>
