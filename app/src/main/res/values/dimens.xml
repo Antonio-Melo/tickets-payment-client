@@ -3,12 +3,12 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!-- -->
+    <!-- Register fragment begins -->
     <dimen name="register_title_vertical_margin">10sp</dimen>
     <dimen name="register_text_view_left_margin">10sp</dimen>
     <dimen name="register_credit_card_title_horizontal_margin">10sp</dimen>
     <dimen name="register_credit_card_title_vertical_margin">15sp</dimen>
     <dimen name="register_create_account_button_horizontal_margin">40sp</dimen>
     <dimen name="register_create_account_button_vertical_margin">10sp</dimen>
-    <!-- -->
+    <!-- Register fragment ends -->
 </resources>

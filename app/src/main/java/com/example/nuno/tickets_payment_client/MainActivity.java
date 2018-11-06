@@ -8,6 +8,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.example.nuno.tickets_payment_client.fragments.CafetariaFragment;
+import com.example.nuno.tickets_payment_client.fragments.HomeFragment;
+import com.example.nuno.tickets_payment_client.fragments.ShowsFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

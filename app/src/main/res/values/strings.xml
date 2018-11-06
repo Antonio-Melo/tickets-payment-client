@@ -6,8 +6,8 @@
     <string name="title_register">Register</string>
     <string name="title_login">Login</string>
 
-    <!-- Register fragment begin -->
-    <string name="register_title">Register New Account</string>
+    <!-- Register fragment begins -->
+    <string name="register_title">Sign Up</string>
     <string name="register_name">Name</string>
     <string name="register_email">Email</string>
     <string name="register_nif">NIF</string>
@@ -28,5 +28,5 @@
     <string name="register_credit_card_number">Number</string>
     <string name="register_credit_card_validity">Validity</string>
     <string name="register_create_account_button">Create Account</string>
-    <!-- Register fragment end -->
+    <!-- Register fragment ends -->
 </resources>
