@@ -29,4 +29,11 @@
     <string name="register_credit_card_validity">Validity</string>
     <string name="register_create_account_button">Create Account</string>
     <!-- Register fragment ends -->
+
+    <!-- Login fragment begins -->
+    <string name="login_title">Login</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Login</string>
+    <!-- Login fragment ends -->
 </resources>

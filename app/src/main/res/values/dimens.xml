@@ -11,4 +11,11 @@
     <dimen name="register_create_account_button_horizontal_margin">40sp</dimen>
     <dimen name="register_create_account_button_vertical_margin">10sp</dimen>
     <!-- Register fragment ends -->
+
+    <!-- Login fragment begins -->
+    <dimen name="login_title_vertical_margin">10sp</dimen>
+    <dimen name="login_text_view_left_margin">10sp</dimen>
+    <dimen name="login_button_vertical_margin">10sp</dimen>
+    <dimen name="login_button_horizontal_margin">40sp</dimen>
+    <!-- Login fragment ends -->
 </resources>
