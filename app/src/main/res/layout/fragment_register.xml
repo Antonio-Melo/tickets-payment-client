@@ -40,7 +40,8 @@
                 android:id="@+id/register_email_input"
                 android:layout_weight="3"
                 android:ems="10"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:hint="@string/register_email_placeholder"/>
         </TableRow>
 
         <TableRow>
@@ -54,7 +55,8 @@
                 android:id="@+id/register_nif_input"
                 android:layout_weight="3"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:hint="@string/register_nif_placeholder"/>
         </TableRow>
 
         <TableRow>
@@ -120,7 +122,8 @@
                 android:id="@+id/register_credit_card_number_input"
                 android:layout_weight="3"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:hint="@string/register_credit_card_number_placeholder"/>
         </TableRow>
 
         <TableRow>
@@ -134,8 +137,25 @@
                 android:id="@+id/register_credit_card_validity_input"
                 android:layout_weight="3"
                 android:ems="10"
+                android:hint="@string/register_credit_card_validity_placeholder"
                 android:inputType="date" />
         </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/register_credit_card_cvv_placeholder"
+                android:text="@string/register_credit_card_cvv"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/register_text_view_left_margin"/>
+
+            <EditText
+                android:id="@+id/register_credit_card_cvv_input"
+                android:layout_weight="3"
+                android:ems="10"
+                android:inputType="date"
+                android:hint="@string/register_credit_card_cvv_placeholder"/>
+        </TableRow>
+
         <Button
             android:id="@+id/register_create_account_button"
             android:text="@string/register_create_account_button"

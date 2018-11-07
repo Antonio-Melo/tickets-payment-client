@@ -7,14 +7,9 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 
 import com.example.nuno.tickets_payment_client.fragments.LoginFragment;
 import com.example.nuno.tickets_payment_client.fragments.RegisterFragment;
-import com.example.nuno.tickets_payment_client.logic_objects.User;
 
 public class RegisterActivity extends AppCompatActivity {
 

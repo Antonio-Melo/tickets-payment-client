@@ -9,11 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.RegisterActivity;
-import com.example.nuno.tickets_payment_client.logic_objects.User;
 
 public class LoginFragment extends Fragment {
 

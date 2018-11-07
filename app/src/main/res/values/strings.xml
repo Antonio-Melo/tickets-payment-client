@@ -10,7 +10,9 @@
     <string name="register_title">Sign Up</string>
     <string name="register_name">Name</string>
     <string name="register_email">Email</string>
+    <string name="register_email_placeholder">something@email.com</string>
     <string name="register_nif">NIF</string>
+    <string name="register_nif_placeholder">123456789</string>
     <string name="register_username">Username</string>
     <string name="register_password">Password</string>
     <string name="register_credit_card">Credit Card Info</string>
@@ -26,7 +28,11 @@
     </string-array>
 
     <string name="register_credit_card_number">Number</string>
+    <string name="register_credit_card_number_placeholder">1111 1111 1111 1111</string>
     <string name="register_credit_card_validity">Validity</string>
+    <string name="register_credit_card_validity_placeholder">MM/yyyy</string>
+    <string name="register_credit_card_cvv">CVV</string>
+    <string name="register_credit_card_cvv_placeholder">123</string>
     <string name="register_create_account_button">Create Account</string>
     <!-- Register fragment ends -->
 
