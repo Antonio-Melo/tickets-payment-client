@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
-        Intent intent = new Intent(this, RegisterActivity.class);
+        /* Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
-        finish();
+        finish(); */
     }
 
 }

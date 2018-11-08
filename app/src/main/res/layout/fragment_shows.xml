@@ -1,12 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Shows fragment"
-        android:layout_centerInParent="true"/>
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:divider="?android:dividerHorizontal"
+    android:gravity="center_vertical">
 
-</RelativeLayout>
+    <!--<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/shows_next_shows"
+        android:gravity="center"
+        android:textSize="@dimen/shows_font_size"
+        android:paddingBottom="@dimen/shows_vertical_padding"
+        android:paddingTop="@dimen/shows_vertical_padding"
+        android:layout_marginBottom="@dimen/shows_vertical_margin"
+        android:layout_marginTop="@dimen/shows_vertical_margin"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/shows_my_shows"
+        android:gravity="center"
+        android:textSize="@dimen/shows_font_size"
+        android:paddingBottom="@dimen/shows_vertical_padding"
+        android:paddingTop="@dimen/shows_vertical_padding"
+        android:layout_marginBottom="@dimen/shows_vertical_margin"
+        android:layout_marginTop="@dimen/shows_vertical_margin"/>-->
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginRight="@dimen/shows_divider_horizontal_margin"
+        android:layout_marginLeft="@dimen/shows_divider_horizontal_margin"/>
+
+    <Button
+        android:id="@+id/next_shows_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shows_vertical_margin"
+        android:layout_marginBottom="@dimen/shows_vertical_margin"
+        android:gravity="center"
+        android:paddingTop="@dimen/shows_vertical_padding"
+        android:paddingBottom="@dimen/shows_vertical_padding"
+        android:text="@string/shows_next_shows"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/shows_font_size" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginRight="@dimen/shows_divider_horizontal_margin"
+        android:layout_marginLeft="@dimen/shows_divider_horizontal_margin"/>
+
+    <Button
+        android:id="@+id/my_shows_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/shows_my_shows"
+        android:gravity="center"
+        android:textSize="@dimen/shows_font_size"
+        android:paddingBottom="@dimen/shows_vertical_padding"
+        android:paddingTop="@dimen/shows_vertical_padding"
+        android:layout_marginBottom="@dimen/shows_vertical_margin"
+        android:layout_marginTop="@dimen/shows_vertical_margin"
+        android:textColor="@android:color/black"/>
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginRight="@dimen/shows_divider_horizontal_margin"
+        android:layout_marginLeft="@dimen/shows_divider_horizontal_margin"/>
+
+</LinearLayout>

@@ -158,7 +158,7 @@ public class RegisterFragment extends Fragment {
 
         registerActivity = (RegisterActivity)getActivity();
 
-        // click listener create account button
+        // click listener on create account button
         registerActivity.findViewById(R.id.register_create_account_button).setOnClickListener(mOnButtonClickListener);
     }
 

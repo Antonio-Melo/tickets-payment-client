@@ -42,4 +42,10 @@
     <string name="login_password">Password</string>
     <string name="login_button">Login</string>
     <!-- Login fragment ends -->
+
+    <!-- Shows fragment begins -->
+    <string name="shows_next_shows">Next Shows</string>
+    <string name="shows_my_shows">My Shows</string>
+    <!-- Shows fragment ends -->
+
 </resources>

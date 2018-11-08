@@ -18,4 +18,11 @@
     <dimen name="login_button_vertical_margin">10sp</dimen>
     <dimen name="login_button_horizontal_margin">40sp</dimen>
     <!-- Login fragment ends -->
+
+    <!-- Shows fragment begins -->
+    <dimen name="shows_font_size">25sp</dimen>
+    <dimen name="shows_vertical_padding">10sp</dimen>
+    <dimen name="shows_vertical_margin">10sp</dimen>
+    <dimen name="shows_divider_horizontal_margin">20sp</dimen>
+    <!-- Shows fragment ends -->
 </resources>
