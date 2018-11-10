@@ -48,4 +48,8 @@
     <string name="shows_my_shows">My Shows</string>
     <!-- Shows fragment ends -->
 
+    <!-- MyShows activity begins -->
+    <string name="my_shows_action_bar_title">My Shows</string>
+    <string name="my_shows_bar_text">|</string>
+    <!-- MyShows activity ends -->
 </resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10sp"
+    android:layout_marginLeft="10sp"
+    android:layout_marginRight="10sp">
+
+    <TableRow>
+        <TextView android:id="@+id/my_shows_name_text_view"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:textSize="25sp"/>
+    </TableRow>
+    <RelativeLayout android:layout_width="match_parent">
+
+        <TextView android:id="@+id/my_shows_artist_text_view"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"/>
+
+        <TextView android:id="@+id/my_shows_bar"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@id/my_shows_artist_text_view"
+            android:text="@string/my_shows_bar_text"
+            android:textSize="20sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"/>
+
+        <TextView android:id="@+id/my_shows_date_text_view"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:layout_toEndOf="@id/my_shows_bar"/>
+
+        <TextView
+            android:id="@+id/my_shows_price_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+</TableLayout>

@@ -22,7 +22,8 @@
         <activity android:name=".NextShowsActivity"
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".MyShowsActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity"
+            android:label="@string/my_shows_action_bar_title"></activity>
     </application>
 
 </manifest>
