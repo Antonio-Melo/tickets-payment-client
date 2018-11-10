@@ -57,6 +57,5 @@ public class ShowsFragment extends Fragment {
 
     public void nextActivity(Intent intent) {
         startActivity(intent);
-        getActivity().finish();
     }
 }
