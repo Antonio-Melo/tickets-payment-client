@@ -52,4 +52,8 @@
     <string name="my_shows_action_bar_title">My Shows</string>
     <string name="my_shows_bar_text">|</string>
     <!-- MyShows activity ends -->
+
+    <!-- NextShows activity begins -->
+    <string name="next_shows_action_bar_title">Next Shows</string>
+    <!-- NextShows activity ends -->
 </resources>

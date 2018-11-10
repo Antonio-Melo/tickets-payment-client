@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".NextShowsActivity"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:label="@string/next_shows_action_bar_title"/>
         <activity android:name=".MyShowsActivity"
             android:parentActivityName=".MainActivity"
             android:label="@string/my_shows_action_bar_title"></activity>

@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".NextShowsActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next Shows" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/next_shows_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

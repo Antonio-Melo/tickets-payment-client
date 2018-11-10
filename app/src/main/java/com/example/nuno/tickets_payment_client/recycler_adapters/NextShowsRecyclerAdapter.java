@@ -14,27 +14,27 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class MyShowsRecyclerAdapter extends RecyclerView.Adapter<MyShowsRecyclerAdapter.MyShowViewHolder> {
+public class NextShowsRecyclerAdapter extends RecyclerView.Adapter<NextShowsRecyclerAdapter.NextShowViewHolder> {
 
     private ArrayList<Show> showsList;
 
-    public MyShowsRecyclerAdapter(ArrayList<Show> showsList) {
+    public NextShowsRecyclerAdapter(ArrayList<Show> showsList) {
         this.showsList = showsList;
     }
 
     @NonNull
     @Override
-    public MyShowViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public NextShowViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v;
 
         v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_shows_item, viewGroup, false);
-        MyShowViewHolder vHolder = new MyShowViewHolder(v);
+        NextShowsRecyclerAdapter.NextShowViewHolder vHolder = new NextShowsRecyclerAdapter.NextShowViewHolder(v);
 
         return vHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyShowViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull NextShowViewHolder viewHolder, int i) {
 
         viewHolder.nameText.setText(showsList.get(i).getName());
         viewHolder.artistText.setText(showsList.get(i).getArtist());
@@ -50,14 +50,14 @@ public class MyShowsRecyclerAdapter extends RecyclerView.Adapter<MyShowsRecycler
         return showsList.size();
     }
 
-    public static class MyShowViewHolder extends RecyclerView.ViewHolder {
+    public static class NextShowViewHolder extends RecyclerView.ViewHolder {
 
         private TextView nameText;
         private TextView artistText;
         private TextView dateText;
         private TextView priceText;
 
-        public MyShowViewHolder(@NonNull View itemView) {
+        public NextShowViewHolder(@NonNull View itemView) {
             super(itemView);
 
             nameText = itemView.findViewById(R.id.my_shows_name_text_view);
@@ -67,5 +67,4 @@ public class MyShowsRecyclerAdapter extends RecyclerView.Adapter<MyShowsRecycler
 
         }
     }
-
 }
