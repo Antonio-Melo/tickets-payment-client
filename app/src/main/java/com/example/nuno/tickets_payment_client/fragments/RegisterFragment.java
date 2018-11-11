@@ -13,6 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.RegisterActivity;
 import com.example.nuno.tickets_payment_client.logic_objects.CreditCard;
@@ -43,7 +49,7 @@ public class RegisterFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            User user = new User();
+            /*User user = new User();
 
             EditText editText;
             String input;
@@ -137,14 +143,37 @@ public class RegisterFragment extends Fragment {
             user.setCreditCard(creditCard);
 
             // Create key pair
-            generateAndStoreKeys(user);
+            generateAndStoreKeys(user);*/
 
             // Call API
-            if (valid) {
-                Log.d(TAG, "Calling API");
-            }
+            //if (valid) {
+                callAPI();
+            //}
         }
     };
+
+    public void callAPI() {
+        RequestQueue queue = Volley.newRequestQueue(this.getContext());
+        String url ="http://10.0.2.2:3000/shows";
+        Log.d(TAG, "Calling API");
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Sucess", response);
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error", "Não pintou");
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
 
     @Nullable
     @Override
