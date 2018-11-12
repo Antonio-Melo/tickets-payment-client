@@ -8,6 +8,8 @@ public class CreditCard {
     private String type;
     private String number;
     private String validity;
+    private String expirityMonth;
+    private String expirityYear;
     private String cvv;
 
     private static final Pattern VALID_CREDIT_CARD_VALIDITY_DATE_REGEX =
@@ -50,5 +52,31 @@ public class CreditCard {
 
     public void setCvv(String cvv) {
         this.cvv = cvv;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public String getValidity() {
+        return validity;
+    }
+
+    public String getValidityMonth() {
+        String[] date = toString().split("/");
+        return date[0];
+    }
+
+    public String getValidityYear(){
+        String[] date = toString().split("/");
+        return date[1];
+    }
+
+    public String getCvv() {
+        return cvv;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.nuno.tickets_payment_client;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -49,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         Fragment selectedFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
-        /* Intent intent = new Intent(this, RegisterActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
-        finish(); */
+        finish();
     }
 }

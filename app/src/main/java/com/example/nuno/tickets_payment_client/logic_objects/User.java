@@ -66,6 +66,34 @@ public class User {
         this.creditCard = creditCard;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getNif() {
+        return nif;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
+    public UUID getUserUUID() {
+        return userUUID;
+    }
+
+    public byte[] getUserPublicKey() {
+        return userPublicKey;
+    }
+
     public static boolean validateName(String nameStr) {
         Matcher matcher = VALID_NAME_REGEX.matcher(nameStr);
         return matcher.find();

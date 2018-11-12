@@ -13,18 +13,34 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.RegisterActivity;
 import com.example.nuno.tickets_payment_client.logic_objects.CreditCard;
 import com.example.nuno.tickets_payment_client.logic_objects.User;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.DataOutputStream;
 import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.security.auth.x500.X500Principal;
 
@@ -142,6 +158,7 @@ public class RegisterFragment extends Fragment {
             // Call API
             if (valid) {
                 Log.d(TAG, "Calling API");
+                callApi(user);
             }
         }
     };
@@ -167,7 +184,7 @@ public class RegisterFragment extends Fragment {
             KeyStore ks = KeyStore.getInstance(ANDROID_KEYSTORE);
             ks.load(null);
             KeyStore.Entry entry = ks.getEntry(user.getUsername(), null);
-            if (entry == null) {
+            if (null == null) {
                 Calendar start = new GregorianCalendar();
                 Calendar end = new GregorianCalendar();
                 end.add(Calendar.YEAR, 20);
@@ -188,5 +205,129 @@ public class RegisterFragment extends Fragment {
         catch (Exception ex) {
             Log.d(TAG, ex.getMessage());
         }
+    }
+
+    public void callApi(final User user) {
+
+        // Instantiate the RequestQueue.
+       /* RequestQueue queue = Volley.newRequestQueue(this.getContext());
+        String url ="http://10.0.2.2:3000/shows";
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        // mTextView.setText("Response is: "+ response.substring(0,500));
+                        Log.d(TAG, "Success");
+                        Log.d(TAG, response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // mTextView.setText("That didn't work!");
+                Log.d(TAG, "Error");
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);*/
+
+        /*
+        try {
+            String urlAdress = "http://10.0.2.2:3000/users/signup";
+            URL url = new URL(urlAdress);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            conn.setRequestProperty("Accept","application/json");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+
+            JSONObject jsonParam = new JSONObject();
+            jsonParam.put("username", user.getUsername());
+            jsonParam.put("name", user.getName());
+            jsonParam.put("password", user.getPassword());
+            jsonParam.put("nif", user.getNif());
+            jsonParam.put("email", user.getEmail());
+            // jsonParam.put("publickKey", user.getUserPublicKey().toString());
+
+            JSONObject creditCard = new JSONObject();
+            try {
+                creditCard.put("cardType", user.getCreditCard().getType());
+                creditCard.put("number", user.getCreditCard().getNumber());
+                creditCard.put("cvv", user.getCreditCard().getCvv());
+                creditCard.put("expiryMonth", user.getCreditCard().getValidityMonth());
+                creditCard.put("expiryYear", user.getCreditCard().getValidityYear());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            jsonParam.put("creditCard", creditCard.toString());
+
+
+            Log.i("JSON", jsonParam.toString());
+            DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+            //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
+            os.writeBytes(jsonParam.toString());
+
+            os.flush();
+            os.close();
+
+            Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+            Log.i("MSG" , conn.getResponseMessage());
+
+            conn.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+
+        RequestQueue queue = Volley.newRequestQueue(this.getActivity());
+        String url = "http://10.0.2.2:3000/users/signup";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                /*Log.d(TAG, error.toString());
+                Log.d(TAG, error.networkResponse.toString());*/
+                Log.d(TAG, error.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("username", user.getUsername());
+                params.put("name", user.getName());
+                params.put("password", user.getPassword());
+                params.put("nif", user.getNif());
+                params.put("email", user.getEmail());
+                params.put("publickKey", user.getUserPublicKey().toString());
+
+                JSONObject creditCard = new JSONObject();
+                try {
+                    creditCard.put("cardType", user.getCreditCard().getType());
+                    creditCard.put("number", user.getCreditCard().getNumber());
+                    creditCard.put("cvv", user.getCreditCard().getCvv());
+                    creditCard.put("expiryMonth", "12");
+                    creditCard.put("expiryYear", "2018");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                params.put("creditCard", creditCard.toString());
+
+                return params;
+            }
+        };
+
+        queue.add(stringRequest);
     }
 }
