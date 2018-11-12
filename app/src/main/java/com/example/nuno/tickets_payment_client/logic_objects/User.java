@@ -15,7 +15,7 @@ public class User {
     private CreditCard creditCard;
 
     private UUID userUUID;
-    private byte[] userPublicKey;
+    private String userPublicKey;
 
     private static final Pattern VALID_NAME_REGEX =
             Pattern.compile("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
@@ -58,7 +58,7 @@ public class User {
         this.password = password;
     }
 
-    public void setUserPublicKey(byte[] userPublicKey) {
+    public void setUserPublicKey(String userPublicKey) {
         this.userPublicKey = userPublicKey;
     }
 
@@ -90,7 +90,7 @@ public class User {
         return userUUID;
     }
 
-    public byte[] getUserPublicKey() {
+    public String getUserPublicKey() {
         return userPublicKey;
     }
 

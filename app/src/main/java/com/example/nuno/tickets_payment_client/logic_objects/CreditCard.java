@@ -66,6 +66,14 @@ public class CreditCard {
         return validity;
     }
 
+    public void setExpirityMonth(String expirityMonth) {
+        this.expirityMonth = expirityMonth;
+    }
+
+    public void setExpirityYear(String expirityYear) {
+        this.expirityYear = expirityYear;
+    }
+
     public String getValidityMonth() {
         String[] date = toString().split("/");
         return date[0];
