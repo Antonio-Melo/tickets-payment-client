@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.nuno.tickets_payment_client.R;
-import com.example.nuno.tickets_payment_client.logic_objects.Show;
+import com.example.nuno.tickets_payment_client.logic.Show;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

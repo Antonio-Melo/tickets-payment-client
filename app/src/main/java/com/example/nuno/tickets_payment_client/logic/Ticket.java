@@ -1,4 +1,4 @@
-package com.example.nuno.tickets_payment_client.logic_objects;
+package com.example.nuno.tickets_payment_client.logic;
 
 public class Ticket {
 

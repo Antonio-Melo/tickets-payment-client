@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.nuno.tickets_payment_client.logic_objects.Show;
-import com.example.nuno.tickets_payment_client.recycler_adapters.MyShowsRecyclerAdapter;
+import com.example.nuno.tickets_payment_client.logic.Show;
 import com.example.nuno.tickets_payment_client.recycler_adapters.NextShowsRecyclerAdapter;
 
 import java.util.ArrayList;

@@ -23,8 +23,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.RegisterActivity;
-import com.example.nuno.tickets_payment_client.logic_objects.CreditCard;
-import com.example.nuno.tickets_payment_client.logic_objects.User;
+import com.example.nuno.tickets_payment_client.logic.API;
+import com.example.nuno.tickets_payment_client.logic.CreditCard;
+import com.example.nuno.tickets_payment_client.logic.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -157,9 +158,9 @@ public class RegisterFragment extends Fragment {
             creditCard.setType("VISA");
             creditCard.setCvv("123");
             creditCard.setExpiringMonth("2018");
-            creditCard.setExpiringYear("12");*/
+            creditCard.setExpiringYear("12");
 
-            user.setCreditCard(creditCard);
+            user.setCreditCard(creditCard);*/
 
             // Create key pair
             generateAndStoreKeys(user);
@@ -168,6 +169,8 @@ public class RegisterFragment extends Fragment {
             if (valid) {
                 Log.d(TAG, "Calling API");
                 callApi(user);
+                API api = new API();
+                api.register(getContext(), user);
             }
         }
     };

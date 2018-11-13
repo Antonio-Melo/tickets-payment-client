@@ -1,4 +1,4 @@
-package com.example.nuno.tickets_payment_client.logic_objects;
+package com.example.nuno.tickets_payment_client.logic;
 
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -64,6 +64,10 @@ public class User {
 
     public void setCreditCard(CreditCard creditCard) {
         this.creditCard = creditCard;
+    }
+
+    public void setUserUUID(UUID userUUID) {
+        this.userUUID = userUUID;
     }
 
     public String getName() {
