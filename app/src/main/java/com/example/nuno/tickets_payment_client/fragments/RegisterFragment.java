@@ -20,7 +20,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.RegisterActivity;
@@ -30,25 +29,17 @@ import com.example.nuno.tickets_payment_client.logic_objects.User;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.DataOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
-import java.security.PublicKey;
-import java.security.cert.Certificate;
-import java.security.interfaces.RSAPublicKey;
 import java.security.spec.AlgorithmParameterSpec;
-import java.security.spec.RSAPublicKeySpec;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.security.auth.x500.X500Principal;
 
@@ -67,7 +58,7 @@ public class RegisterFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            /*User user = new User();
+            User user = new User();
 
             EditText editText;
             String input;
@@ -138,15 +129,11 @@ public class RegisterFragment extends Fragment {
                 valid = false;
             }
 
-            editText = registerActivity.findViewById(R.id.register_credit_card_validity_input);
-            input = editText.getText().toString();
-            if (CreditCard.validateCreditCardValidityDate(input)) {
-                creditCard.setValidity(input);
-            }
-            else {
-                editText.setError("Must be on MM/yyyy format");
-                valid = false;
-            }
+            spinner = registerActivity.findViewById(R.id.register_credit_card_expiring_month_spinner);
+            creditCard.setExpiringMonth(spinner.getSelectedItem().toString());
+
+            spinner = registerActivity.findViewById(R.id.register_credit_card_expiring_year_spinner);
+            creditCard.setExpiringYear(spinner.getSelectedItem().toString());
 
             editText = registerActivity.findViewById(R.id.register_credit_card_cvv_input);
             input = editText.getText().toString();
@@ -156,9 +143,9 @@ public class RegisterFragment extends Fragment {
             else {
                 editText.setError("Must be a 3 digit number");
                 valid = false;
-            }*/
+            }
 
-            User user = new User();
+            /*User user = new User();
             user.setName("Runo Namos");
             user.setEmail("runo@gmail.com");
             user.setNif("123456789");
@@ -169,8 +156,8 @@ public class RegisterFragment extends Fragment {
             creditCard.setNumber("4111111111111111");
             creditCard.setType("VISA");
             creditCard.setCvv("123");
-            creditCard.setExpirityMonth("2018");
-            creditCard.setExpirityYear("12");
+            creditCard.setExpiringMonth("2018");
+            creditCard.setExpiringYear("12");*/
 
             user.setCreditCard(creditCard);
 
@@ -178,10 +165,10 @@ public class RegisterFragment extends Fragment {
             generateAndStoreKeys(user);
 
             // Call API
-           // if (valid) {
+            if (valid) {
                 Log.d(TAG, "Calling API");
                 callApi(user);
-          //  }
+            }
         }
     };
 
@@ -243,7 +230,7 @@ public class RegisterFragment extends Fragment {
             jsonBody.put("password", user.getPassword());
             jsonBody.put("nif", user.getNif());
             jsonBody.put("email", user.getEmail());
-            jsonBody.put("publicKey", user.getUserPublicKey().toString());
+            jsonBody.put("publicKey", user.getUserPublicKey());
 
             JSONObject creditCard = new JSONObject();
 
@@ -259,6 +246,13 @@ public class RegisterFragment extends Fragment {
                 @Override
                 public void onResponse(JSONObject response) {
                     Log.d(TAG, response.toString());
+
+                    try {
+                        Log.d(TAG, response.get("uuid").toString());
+                        UUID userUUID = UUID.fromString(response.get("uuid").toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }, new Response.ErrorListener() {
                 @Override

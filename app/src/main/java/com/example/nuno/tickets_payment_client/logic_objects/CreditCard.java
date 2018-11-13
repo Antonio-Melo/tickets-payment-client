@@ -7,13 +7,9 @@ public class CreditCard {
 
     private String type;
     private String number;
-    private String validity;
-    private String expirityMonth;
-    private String expirityYear;
+    private String expiringMonth;
+    private String expiringYear;
     private String cvv;
-
-    private static final Pattern VALID_CREDIT_CARD_VALIDITY_DATE_REGEX =
-            Pattern.compile("(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$");
 
     private static final Pattern VALID_CREDIT_CARD_NUMBER_REGEX =
             Pattern.compile("^\\d{16}$");
@@ -22,11 +18,6 @@ public class CreditCard {
             Pattern.compile("^\\d{3}$");
 
     public CreditCard () {}
-
-    public static boolean validateCreditCardValidityDate(String creditCardValidityDateStr) {
-        Matcher matcher = VALID_CREDIT_CARD_VALIDITY_DATE_REGEX.matcher(creditCardValidityDateStr);
-        return matcher.find();
-    }
 
     public static boolean validateCreditCardNumber(String creditCardNumberStr) {
         Matcher matcher = VALID_CREDIT_CARD_NUMBER_REGEX.matcher(creditCardNumberStr);
@@ -46,10 +37,6 @@ public class CreditCard {
         this.number = number;
     }
 
-    public void setValidity(String validity) {
-        this.validity = validity;
-    }
-
     public void setCvv(String cvv) {
         this.cvv = cvv;
     }
@@ -62,16 +49,12 @@ public class CreditCard {
         return number;
     }
 
-    public String getValidity() {
-        return validity;
+    public void setExpiringMonth(String expiringMonth) {
+        this.expiringMonth = expiringMonth;
     }
 
-    public void setExpirityMonth(String expirityMonth) {
-        this.expirityMonth = expirityMonth;
-    }
-
-    public void setExpirityYear(String expirityYear) {
-        this.expirityYear = expirityYear;
+    public void setExpiringYear(String expiringYear) {
+        this.expiringYear = expiringYear;
     }
 
     public String getValidityMonth() {

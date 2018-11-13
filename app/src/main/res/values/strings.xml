@@ -29,8 +29,39 @@
 
     <string name="register_credit_card_number">Number</string>
     <string name="register_credit_card_number_placeholder">1111 1111 1111 1111</string>
-    <string name="register_credit_card_validity">Validity</string>
-    <string name="register_credit_card_validity_placeholder">MM/yyyy</string>
+    <string name="register_credit_card_expiring_month">Expiring Month</string>
+    <string-array name="months">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="years">
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+        <item>2026</item>
+        <item>2027</item>
+        <item>2028</item>
+        <item>2029</item>
+        <item>2030</item>
+    </string-array>
+    <string name="register_credit_card_expiring_month_placeholder">MM</string>
+    <string name="register_credit_card_expiring_year">Expiring Year</string>
+    <string name="register_credit_card_expiring_year_placeholder">yyyy</string>
     <string name="register_credit_card_cvv">CVV</string>
     <string name="register_credit_card_cvv_placeholder">123</string>
     <string name="register_create_account_button">Create Account</string>

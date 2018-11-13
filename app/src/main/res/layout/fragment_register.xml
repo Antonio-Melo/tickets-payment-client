@@ -128,17 +128,29 @@
 
         <TableRow>
             <TextView
-                android:id="@+id/register_credit_card_validity_placeholder"
-                android:text="@string/register_credit_card_validity"
+                android:id="@+id/register_credit_card_expiring_month_placeholder"
+                android:text="@string/register_credit_card_expiring_month"
                 android:layout_weight="1"
                 android:layout_marginStart="@dimen/register_text_view_left_margin"/>
 
-            <EditText
-                android:id="@+id/register_credit_card_validity_input"
-                android:layout_weight="3"
-                android:ems="10"
-                android:hint="@string/register_credit_card_validity_placeholder"
-                android:inputType="date" />
+            <Spinner
+                android:id="@+id/register_credit_card_expiring_month_spinner"
+                android:entries="@array/months"
+                android:layout_marginBottom="@dimen/register_credit_card_month_spinner_bottom_margin"
+                android:layout_weight="3"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/register_credit_card_expiring_year_placeholder"
+                android:text="@string/register_credit_card_expiring_year"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/register_text_view_left_margin"/>
+
+            <Spinner
+                android:id="@+id/register_credit_card_expiring_year_spinner"
+                android:entries="@array/years"
+                android:layout_weight="3"/>
         </TableRow>
 
         <TableRow>

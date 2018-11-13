@@ -59,7 +59,7 @@ public class User {
     }
 
     public void setUserPublicKey(String userPublicKey) {
-        this.userPublicKey = userPublicKey;
+        this.userPublicKey = "-----BEGIN PUBLIC KEY-----\n" + userPublicKey + "-----END PUBLIC KEY-----";
     }
 
     public void setCreditCard(CreditCard creditCard) {

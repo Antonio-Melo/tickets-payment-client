@@ -10,6 +10,7 @@
     <dimen name="register_credit_card_title_vertical_margin">15sp</dimen>
     <dimen name="register_create_account_button_horizontal_margin">40sp</dimen>
     <dimen name="register_create_account_button_vertical_margin">10sp</dimen>
+    <dimen name="register_credit_card_month_spinner_bottom_margin">10sp</dimen>
     <!-- Register fragment ends -->
 
     <!-- Login fragment begins -->
