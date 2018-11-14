@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Log.d("MAIN", "Main a ser chamada");
-       /* if (getIntent().hasExtra("user")) {
+        if (getIntent().hasExtra("user")) {
             Bundle bundle = getIntent().getBundleExtra("user");
 
             User user = new User();
@@ -63,18 +63,18 @@ public class MainActivity extends AppCompatActivity {
             user.setName(bundle.getString("name"));
             user.setPassword(bundle.getString("password"));
             user.setEmail(bundle.getString("email"));
-            user.setNif(bundle.getString("nif"));*/
+            user.setNif(bundle.getString("nif"));
 
-            User user = new User();
-            user.setName("Nuno Ramos");
+            /*User user = new User();
+            user.setName("Nuno Ramos");*/
             Fragment selectedFragment = HomeFragment.newInstance(user);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-      /*  }
+        }
         else {
             Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
             finish();
-        }*/
+        }
     }
 
     public User getUser() {

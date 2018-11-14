@@ -30,50 +30,13 @@ import java.util.UUID;
 public class API {
 
     private static final String TAG = "API";
-
-    public static void postRequest(RequestQueue queue, String url, final JSONObject jsonBody, Response.Listener<JSONObject> responseListener, Response.ErrorListener errorListener) {
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null,
-                responseListener, errorListener){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/json");
-                return params;
-            }
-
-            @Override
-            public byte[] getBody() {
-                try {
-                    return jsonBody == null ? null : jsonBody.toString().getBytes("utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-        };
-
-        queue.add(jsonObjectRequest);
-    }
-
-    public static void getRequest(RequestQueue queue, String url, final Map<String, String> params, Response.Listener<JSONObject> responseListener, Response.ErrorListener errorListener) {
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                responseListener, errorListener){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/json");
-                return params;
-            }
-        };
-
-        queue.add(jsonObjectRequest);
-    }
+    private static final String EMULATOR_IP = "10.0.2.2";
+    private static final String LOCAL_IP_ADDRESS = "192.168.1.6";
+    private static String server_ip = LOCAL_IP_ADDRESS;
 
     public static void getShows(final NextShowsActivity nextShowsActivity){
         RequestQueue queue = Volley.newRequestQueue(nextShowsActivity.getBaseContext());
-        String url = "http://10.0.2.2:3000/shows/";
+        String url = "http://" + server_ip +":3000/shows/";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
@@ -95,7 +58,7 @@ public class API {
     public static void register(final Context context, final User user) {
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "http://10.0.2.2:3000/users/signup";
+        String url = "http://" + server_ip + ":3000/users/signup";
 
         try {
             final JSONObject jsonBody = new JSONObject();
@@ -112,42 +75,63 @@ public class API {
             creditCard.put("cardType", user.getCreditCard().getType());
             creditCard.put("number", user.getCreditCard().getNumber());
             creditCard.put("cvv", user.getCreditCard().getCvv());
-            creditCard.put("expiryMonth", "12");
-            creditCard.put("expiryYear", "2018");
+            creditCard.put("expiryMonth", user.getCreditCard().getValidityMonth());
+            creditCard.put("expiryYear", user.getCreditCard().getValidityYear());
 
             jsonBody.put("creditCard", creditCard);
 
-            postRequest(queue, url, jsonBody, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    Log.d(TAG, response.toString());
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d(TAG, response.toString());
 
-                    try {
-                        Log.d(TAG, response.get("uuid").toString());
-                        user.setUserUUID(UUID.fromString(response.get("uuid").toString()));
+                            try {
+                                Log.d(TAG, response.get("uuid").toString());
+                                user.setUserUUID(UUID.fromString(response.get("uuid").toString()));
 
-                        Intent intent = new Intent(context, MainActivity.class);
+                                Intent intent = new Intent(context, MainActivity.class);
 
-                        Bundle bundle = new Bundle();
-                        bundle.putString("uuid", response.get("uuid").toString());
-                        bundle.putString("username", user.getUsername());
-                        bundle.putString("name", user.getName());
-                        bundle.putString("password", user.getPassword());
-                        bundle.putString("email", user.getEmail());
-                        bundle.putString("nif", user.getNif());
-                        intent.putExtra("user", bundle);
-                        context.startActivity(intent);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("uuid", response.get("uuid").toString());
+                                bundle.putString("username", user.getUsername());
+                                bundle.putString("name", user.getName());
+                                bundle.putString("password", user.getPassword());
+                                bundle.putString("email", user.getEmail());
+                                bundle.putString("nif", user.getNif());
+                                intent.putExtra("user", bundle);
+                                context.startActivity(intent);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d(TAG, error.toString());
                 }
-            });
+            }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String,String> params = new HashMap<>();
+                    params.put("Content-Type","application/json");
+                    return params;
+                }
+
+                @Override
+                public byte[] getBody() {
+                    try {
+                        return jsonBody == null ? null : jsonBody.toString().getBytes("utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+            };
+
+            queue.add(jsonObjectRequest);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
