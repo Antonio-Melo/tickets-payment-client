@@ -1,5 +1,6 @@
 package com.example.nuno.tickets_payment_client.logic;
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +11,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nuno.tickets_payment_client.MainActivity;
-import com.example.nuno.tickets_payment_client.RegisterActivity;
+import com.example.nuno.tickets_payment_client.NextShowsActivity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,12 +29,9 @@ import java.util.UUID;
 
 public class API {
 
-    private final String TAG = "API";
+    private static final String TAG = "API";
 
-    private RequestQueue queue;
-    private String url;
-
-    public void postRequest(final JSONObject jsonBody, Response.Listener<JSONObject> responseListener, Response.ErrorListener errorListener) {
+    public static void postRequest(RequestQueue queue, String url, final JSONObject jsonBody, Response.Listener<JSONObject> responseListener, Response.ErrorListener errorListener) {
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null,
                 responseListener, errorListener){
@@ -55,10 +56,46 @@ public class API {
         queue.add(jsonObjectRequest);
     }
 
-    public void register(final Context context, final User user) {
+    public static void getRequest(RequestQueue queue, String url, final Map<String, String> params, Response.Listener<JSONObject> responseListener, Response.ErrorListener errorListener) {
 
-        queue = Volley.newRequestQueue(context);
-        url = "http://10.0.2.2:3000/users/signup";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                responseListener, errorListener){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/json");
+                return params;
+            }
+        };
+
+        queue.add(jsonObjectRequest);
+    }
+
+    public static void getShows(final NextShowsActivity nextShowsActivity){
+        RequestQueue queue = Volley.newRequestQueue(nextShowsActivity.getBaseContext());
+        String url = "http://10.0.2.2:3000/shows/";
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d(TAG, "sucesso");
+                Log.d(TAG, response.toString());
+                nextShowsActivity.setNextShows(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "error");
+            }
+        });
+
+        queue.add(jsonArrayRequest);
+    }
+
+    public static void register(final Context context, final User user) {
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = "http://10.0.2.2:3000/users/signup";
 
         try {
             final JSONObject jsonBody = new JSONObject();
@@ -80,7 +117,7 @@ public class API {
 
             jsonBody.put("creditCard", creditCard);
 
-            postRequest(jsonBody, new Response.Listener<JSONObject>() {
+            postRequest(queue, url, jsonBody, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     Log.d(TAG, response.toString());

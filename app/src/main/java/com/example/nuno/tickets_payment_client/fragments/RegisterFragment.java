@@ -158,9 +158,9 @@ public class RegisterFragment extends Fragment {
             creditCard.setType("VISA");
             creditCard.setCvv("123");
             creditCard.setExpiringMonth("2018");
-            creditCard.setExpiringYear("12");
+            creditCard.setExpiringYear("12");*/
 
-            user.setCreditCard(creditCard);*/
+            user.setCreditCard(creditCard);
 
             // Create key pair
             generateAndStoreKeys(user);
@@ -168,9 +168,7 @@ public class RegisterFragment extends Fragment {
             // Call API
             if (valid) {
                 Log.d(TAG, "Calling API");
-                callApi(user);
-                API api = new API();
-                api.register(getContext(), user);
+                API.register(getContext(), user);
             }
         }
     };
