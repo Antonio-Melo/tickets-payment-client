@@ -59,7 +59,7 @@ public class RegisterFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            /*User user = new User();
+            User user = new User();
 
             EditText editText;
             String input;
@@ -144,9 +144,9 @@ public class RegisterFragment extends Fragment {
             else {
                 editText.setError("Must be a 3 digit number");
                 valid = false;
-            }*/
+            }
 
-            User user = new User();
+            /*User user = new User();
             user.setName("Runo Namos");
             user.setEmail("runo@gmail.com");
             user.setNif("123456789");
@@ -158,18 +158,17 @@ public class RegisterFragment extends Fragment {
             creditCard.setType("VISA");
             creditCard.setCvv("123");
             creditCard.setExpiringMonth("2018");
-            creditCard.setExpiringYear("12");
+            creditCard.setExpiringYear("12");*/
 
             user.setCreditCard(creditCard);
 
             // Create key pair
             generateAndStoreKeys(user);
 
-            // Call API
-           // if (valid) {
+            if (valid) {
                 Log.d(TAG, "Calling API");
                 API.register(getContext(), user);
-          //  }
+            }
         }
     };
 

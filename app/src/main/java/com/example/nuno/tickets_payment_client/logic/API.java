@@ -3,6 +3,7 @@ package com.example.nuno.tickets_payment_client.logic;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -27,28 +28,30 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class API {
 
     private static final String TAG = "API";
     private static final String EMULATOR_IP = "10.0.2.2";
-    private static final String LOCAL_IP_ADDRESS = "192.168.1.6";
+    private static final String LOCAL_IP_ADDRESS = "10.227.148.210";
     private static String server_ip = LOCAL_IP_ADDRESS;
 
     public static void getShows(final NextShowsActivity nextShowsActivity){
+
         RequestQueue queue = Volley.newRequestQueue(nextShowsActivity.getBaseContext());
         String url = "http://" + server_ip +":3000/shows/";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.d(TAG, "sucesso");
-                Log.d(TAG, response.toString());
                 nextShowsActivity.setNextShows(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d(TAG, "error");
+                Log.d(TAG, "Getting shows error");
+                Log.d(TAG, error.networkResponse.toString());
             }
         });
 
@@ -84,24 +87,18 @@ public class API {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            Log.d(TAG, response.toString());
+                            Log.d(TAG, "register success");
 
                             try {
-                                Log.d(TAG, response.get("uuid").toString());
-                                user.setUserUUID(UUID.fromString(response.get("uuid").toString()));
+                                Log.d(TAG, response.toString());
 
                                 Intent intent = new Intent(context, MainActivity.class);
 
-                                Bundle bundle = new Bundle();
-                                bundle.putString("uuid", response.get("uuid").toString());
-                                bundle.putString("username", user.getUsername());
-                                bundle.putString("name", user.getName());
-                                bundle.putString("password", user.getPassword());
-                                bundle.putString("email", user.getEmail());
-                                bundle.putString("nif", user.getNif());
-                                intent.putExtra("user", bundle);
-                                context.startActivity(intent);
+                                SharedPreferences sp = context.getSharedPreferences("Login", MODE_PRIVATE);
+                                MainActivity.saveUserSession(sp, response.get("uuid").toString(), response.getString("username"),
+                                        response.getString("name"), response.getString("email"));
 
+                                context.startActivity(intent);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -109,7 +106,7 @@ public class API {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d(TAG, error.toString());
+                    Log.d(TAG, "register error");
                 }
             }){
                 @Override
@@ -135,6 +132,48 @@ public class API {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void login(final Context context, final String username, final String password) {
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = "http://" + server_ip +":3000/users/signin";
+
+        final JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("username", username);
+            jsonBody.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, "login success");
+
+                try {
+                    Log.d(TAG, response.toString());
+
+                    Intent intent = new Intent(context, MainActivity.class);
+
+                    SharedPreferences sp = context.getSharedPreferences("Login", MODE_PRIVATE);
+                    MainActivity.saveUserSession(sp, response.get("uuid").toString(), response.getString("username"),
+                            response.getString("name"), response.getString("email"));
+
+                    context.startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "login error");
+            }
+        });
+
+        queue.add(jsonObjectRequest);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.nuno.tickets_payment_client.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.example.nuno.tickets_payment_client.MainActivity;
 import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.logic.User;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class HomeFragment extends Fragment {
 
@@ -35,6 +38,10 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        user = new User();
+        SharedPreferences sp = this.getActivity().getSharedPreferences("Login", MODE_PRIVATE);
+        if (sp.getBoolean("loggedIn", false)) user = MainActivity.getUserSession(sp);
+
         ((TextView)view.findViewById(R.id.home_text_view)).setText(user.getName());
     }
 }
