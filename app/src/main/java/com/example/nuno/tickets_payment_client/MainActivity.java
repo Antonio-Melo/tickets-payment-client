@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item .getItemId()) {
                 case R.id.navigation_home:
-                    selectedFragment = HomeFragment.newInstance(user);
+                    selectedFragment = new HomeFragment();
                     break;
                 case R.id.navigation_shows:
                     selectedFragment = new ShowsFragment();
@@ -54,23 +54,9 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        Log.d("MAIN", "Main a ser chamada");
         SharedPreferences sp = this.getSharedPreferences("Login", MODE_PRIVATE);
-        // if (getIntent().hasExtra("user")) {
         if (sp.getBoolean("loggedIn", false)) {
-            // Bundle bundle = getIntent().getBundleExtra("user");
-
-            user = getUserSession(sp);
-
-            /*user.setUserUUID(UUID.fromString(bundle.getString("uuid")));
-            user.setUsername(bundle.getString("username"));
-            user.setName(bundle.getString("name"));
-            user.setEmail(bundle.getString("email"));*/
-
-            /*User user = new User();
-            user.setName("Nuno Ramos");*/
-            Fragment selectedFragment = HomeFragment.newInstance(user);
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
         }
         else {
             changeToRegisterActivity();
@@ -101,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 changeToRegisterActivity();
                 break;
         }
-
-
 
         return super.onOptionsItemSelected(item);
     }

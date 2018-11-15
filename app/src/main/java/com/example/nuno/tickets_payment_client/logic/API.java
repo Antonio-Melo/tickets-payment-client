@@ -78,8 +78,8 @@ public class API {
             creditCard.put("cardType", user.getCreditCard().getType());
             creditCard.put("number", user.getCreditCard().getNumber());
             creditCard.put("cvv", user.getCreditCard().getCvv());
-            creditCard.put("expiryMonth", user.getCreditCard().getValidityMonth());
-            creditCard.put("expiryYear", user.getCreditCard().getValidityYear());
+            creditCard.put("expiryMonth", user.getCreditCard().getExpiringMonth());
+            creditCard.put("expiryYear", user.getCreditCard().getExpiringYear());
 
             jsonBody.put("creditCard", creditCard);
 
@@ -95,8 +95,8 @@ public class API {
                                 Intent intent = new Intent(context, MainActivity.class);
 
                                 SharedPreferences sp = context.getSharedPreferences("Login", MODE_PRIVATE);
-                                MainActivity.saveUserSession(sp, response.get("uuid").toString(), response.getString("username"),
-                                        response.getString("name"), response.getString("email"));
+                                MainActivity.saveUserSession(sp, response.get("uuid").toString(), user.getUsername(),
+                                        user.getName(), user.getEmail());
 
                                 context.startActivity(intent);
                             } catch (JSONException e) {
@@ -134,7 +134,7 @@ public class API {
         }
     }
 
-    public static void login(final Context context, final String username, final String password) {
+    public static void login(final Context context, final String username, final String password, final String userPublicKey) {
 
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://" + server_ip +":3000/users/signin";
@@ -143,6 +143,7 @@ public class API {
         try {
             jsonBody.put("username", username);
             jsonBody.put("password", password);
+            jsonBody.put("publicKey", userPublicKey);
         } catch (JSONException e) {
             e.printStackTrace();
         }

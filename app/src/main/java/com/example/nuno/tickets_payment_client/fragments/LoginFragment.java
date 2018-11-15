@@ -13,6 +13,7 @@ import android.widget.EditText;
 import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.RegisterActivity;
 import com.example.nuno.tickets_payment_client.logic.API;
+import com.example.nuno.tickets_payment_client.logic.User;
 
 public class LoginFragment extends Fragment {
 
@@ -27,7 +28,11 @@ public class LoginFragment extends Fragment {
             String username = ((EditText)registerActivity.findViewById(R.id.login_username_input)).getText().toString();
             String password = ((EditText)registerActivity.findViewById(R.id.login_password_input)).getText().toString();
 
-            API.login(getContext(), username, password);
+            User user = new User();
+            user.setUsername(username);
+            registerActivity.generateAndStoreKeys(user);
+
+            API.login(getContext(), username, password, user.getUserPublicKey());
         }
     };
 

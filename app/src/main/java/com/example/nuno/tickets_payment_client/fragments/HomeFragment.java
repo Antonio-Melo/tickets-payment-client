@@ -18,27 +18,15 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class HomeFragment extends Fragment {
 
-    private User user;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    public static HomeFragment newInstance(User user) {
-        HomeFragment homeFragment = new HomeFragment();
-        homeFragment.setUser(user);
-        return homeFragment;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        user = new User();
+        User user = new User();
         SharedPreferences sp = this.getActivity().getSharedPreferences("Login", MODE_PRIVATE);
         if (sp.getBoolean("loggedIn", false)) user = MainActivity.getUserSession(sp);
 

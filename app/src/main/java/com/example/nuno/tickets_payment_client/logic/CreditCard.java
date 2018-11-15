@@ -57,14 +57,12 @@ public class CreditCard {
         this.expiringYear = expiringYear;
     }
 
-    public String getValidityMonth() {
-        String[] date = toString().split("/");
-        return date[0];
+    public String getExpiringMonth() {
+        return expiringMonth;
     }
 
-    public String getValidityYear(){
-        String[] date = toString().split("/");
-        return date[1];
+    public String getExpiringYear() {
+        return expiringYear;
     }
 
     public String getCvv() {

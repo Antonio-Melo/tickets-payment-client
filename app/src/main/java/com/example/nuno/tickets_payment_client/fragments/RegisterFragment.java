@@ -46,10 +46,6 @@ import javax.security.auth.x500.X500Principal;
 
 public class RegisterFragment extends Fragment {
 
-    static final int KEY_SIZE = 512;
-    static final String ANDROID_KEYSTORE = "AndroidKeyStore";
-    static final String KEY_ALGO = "RSA";
-    // static final String SIGN_ALGO = "SHA256WithRSA";
     private final String TAG = "RegisterFragment";
 
     private RegisterActivity registerActivity;
@@ -59,7 +55,7 @@ public class RegisterFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            User user = new User();
+           /* User user = new User();
 
             EditText editText;
             String input;
@@ -144,9 +140,9 @@ public class RegisterFragment extends Fragment {
             else {
                 editText.setError("Must be a 3 digit number");
                 valid = false;
-            }
+            }*/
 
-            /*User user = new User();
+            User user = new User();
             user.setName("Runo Namos");
             user.setEmail("runo@gmail.com");
             user.setNif("123456789");
@@ -157,18 +153,18 @@ public class RegisterFragment extends Fragment {
             creditCard.setNumber("4111111111111111");
             creditCard.setType("VISA");
             creditCard.setCvv("123");
-            creditCard.setExpiringMonth("2018");
-            creditCard.setExpiringYear("12");*/
+            creditCard.setExpiringMonth("12");
+            creditCard.setExpiringYear("2018");
 
             user.setCreditCard(creditCard);
 
             // Create key pair
-            generateAndStoreKeys(user);
+            registerActivity.generateAndStoreKeys(user);
 
-            if (valid) {
+          //  if (valid) {
                 Log.d(TAG, "Calling API");
                 API.register(getContext(), user);
-            }
+         //   }
         }
     };
 
@@ -186,101 +182,5 @@ public class RegisterFragment extends Fragment {
 
         // click listener on create account button
         registerActivity.findViewById(R.id.register_create_account_button).setOnClickListener(mOnButtonClickListener);
-    }
-
-    public void generateAndStoreKeys(User user) {
-        try {
-            KeyStore ks = KeyStore.getInstance(ANDROID_KEYSTORE);
-            ks.load(null);
-            KeyStore.Entry entry = ks.getEntry(user.getUsername(), null);
-            if (null == null) {
-                Calendar start = new GregorianCalendar();
-                Calendar end = new GregorianCalendar();
-                end.add(Calendar.YEAR, 20);
-                KeyPairGenerator kgen = KeyPairGenerator.getInstance(KEY_ALGO, ANDROID_KEYSTORE);
-                AlgorithmParameterSpec spec = new KeyPairGeneratorSpec.Builder(registerActivity)
-                        .setKeySize(KEY_SIZE)
-                        .setAlias(user.getUsername())
-                        .setSubject(new X500Principal("CN=" + user.getUsername()))
-                        .setSerialNumber(BigInteger.valueOf(12121212))
-                        .setStartDate(start.getTime())
-                        .setEndDate(end.getTime())
-                        .build();
-                kgen.initialize(spec);
-                KeyPair kp = kgen.generateKeyPair();
-
-                user.setUserPublicKey(new String(Base64.encode(kp.getPublic().getEncoded(), Base64.DEFAULT)));
-            }
-        }
-        catch (Exception ex) {
-            Log.d(TAG, ex.getMessage());
-        }
-    }
-
-    public void callApi(final User user) {
-
-        RequestQueue queue = Volley.newRequestQueue(this.getActivity());
-        String url = "http://10.0.2.2:3000/users/signup";
-
-        try {
-            final JSONObject jsonBody = new JSONObject();
-
-            jsonBody.put("username", user.getUsername());
-            jsonBody.put("name", user.getName());
-            jsonBody.put("password", user.getPassword());
-            jsonBody.put("nif", user.getNif());
-            jsonBody.put("email", user.getEmail());
-            jsonBody.put("publicKey", user.getUserPublicKey());
-
-            JSONObject creditCard = new JSONObject();
-
-            creditCard.put("cardType", user.getCreditCard().getType());
-            creditCard.put("number", user.getCreditCard().getNumber());
-            creditCard.put("cvv", user.getCreditCard().getCvv());
-            creditCard.put("expiryMonth", "12");
-            creditCard.put("expiryYear", "2018");
-
-            jsonBody.put("creditCard", creditCard);
-
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    Log.d(TAG, response.toString());
-
-                    try {
-                        Log.d(TAG, response.get("uuid").toString());
-                        UUID userUUID = UUID.fromString(response.get("uuid").toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.d(TAG, error.toString());
-                }
-            }){
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String,String> params = new HashMap<String, String>();
-                    params.put("Content-Type","application/json");
-                    return params;
-                }
-
-                @Override
-                public byte[] getBody() {
-                    try {
-                        return jsonBody == null ? null : jsonBody.toString().getBytes("utf-8");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                }
-            };
-
-                queue.add(jsonObjectRequest);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 }
