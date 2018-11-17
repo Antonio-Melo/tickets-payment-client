@@ -44,4 +44,22 @@
             android:textSize="20sp"/>
     </RelativeLayout>
 
+    <TableRow>
+        <Button
+            android:id="@+id/next_shows_button_add_to_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end|center"
+            android:text="@string/shows_add_to_cart" />
+    </TableRow>
+
+    <View
+        android:id="@+id/shows_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginRight="5sp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="20sp"/>
+
 </TableLayout>

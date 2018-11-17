@@ -6,28 +6,6 @@
     android:divider="?android:dividerHorizontal"
     android:gravity="center_vertical">
 
-    <!--<TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/shows_next_shows"
-        android:gravity="center"
-        android:textSize="@dimen/shows_font_size"
-        android:paddingBottom="@dimen/shows_vertical_padding"
-        android:paddingTop="@dimen/shows_vertical_padding"
-        android:layout_marginBottom="@dimen/shows_vertical_margin"
-        android:layout_marginTop="@dimen/shows_vertical_margin"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/shows_my_shows"
-        android:gravity="center"
-        android:textSize="@dimen/shows_font_size"
-        android:paddingBottom="@dimen/shows_vertical_padding"
-        android:paddingTop="@dimen/shows_vertical_padding"
-        android:layout_marginBottom="@dimen/shows_vertical_margin"
-        android:layout_marginTop="@dimen/shows_vertical_margin"/>-->
-
     <View
         android:id="@+id/divider3"
         android:layout_width="match_parent"

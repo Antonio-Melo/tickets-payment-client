@@ -25,5 +25,18 @@
     <dimen name="shows_vertical_padding">10sp</dimen>
     <dimen name="shows_vertical_margin">10sp</dimen>
     <dimen name="shows_divider_horizontal_margin">20sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
     <!-- Shows fragment ends -->
+
+    <!-- Shows activity begins -->
+    <dimen name="shows_activity_padding">10sp</dimen>
+    <dimen name="shows_name_font_size">30sp</dimen>
+    <dimen name="shows_artist_font_size">20sp</dimen>
+    <dimen name="shows_date_font_size">15sp</dimen>
+    <dimen name="shows_price_font_size">15sp</dimen>
+    <dimen name="shows_artist_bottom_margin">25sp</dimen>
+    <dimen name="shows_artist_left_margin">30sp</dimen>
+    <dimen name="shows_20_margin">20sp</dimen>
+    <dimen name="shows_10_text_size">10sp</dimen>
+    <!-- Shows activity ends -->
 </resources>

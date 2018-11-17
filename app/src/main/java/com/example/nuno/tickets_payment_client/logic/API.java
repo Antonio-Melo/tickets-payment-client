@@ -26,7 +26,6 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -34,24 +33,24 @@ public class API {
 
     private static final String TAG = "API";
     private static final String EMULATOR_IP = "10.0.2.2";
-    private static final String LOCAL_IP_ADDRESS = "10.227.148.210";
+    private static final String LOCAL_IP_ADDRESS = "192.168.1.4";
     private static String server_ip = LOCAL_IP_ADDRESS;
 
     public static void getShows(final NextShowsActivity nextShowsActivity){
 
         RequestQueue queue = Volley.newRequestQueue(nextShowsActivity.getBaseContext());
-        String url = "http://" + server_ip +":3000/shows/";
+        String url = "http://" + server_ip + ":3000/shows/";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                Log.d(TAG, response.toString());
                 nextShowsActivity.setNextShows(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, "Getting shows error");
-                Log.d(TAG, error.networkResponse.toString());
             }
         });
 

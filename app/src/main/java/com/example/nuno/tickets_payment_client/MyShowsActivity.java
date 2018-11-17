@@ -28,10 +28,10 @@ public class MyShowsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         // data
         userShows = new ArrayList<>();
-        userShows.add(new Show("Outra vez no Porto","Lartiste", 30.14, new Date(2019, 4, 4)));
-        userShows.add(new Show("Maluma baby","Maluma", 30.14, new Date(2019, 4, 4)));
-        userShows.add(new Show("J Balvin, baila reggaeton","J Balvin", 30.14, new Date(2019, 4, 4)));
-        userShows.add(new Show("Vira o disco e toca o mesmo","Toy", 30.14, new Date(2019, 4, 4)));
+        /*userShows.add(new Show("1","Outra vez no Porto","Lartiste", 30.14, new Date(2019, 4, 4)));
+        userShows.add(new Show("2","Maluma baby","Maluma", 30.14, new Date(2019, 4, 4)));
+        userShows.add(new Show("3","J Balvin, baila reggaeton","J Balvin", 30.14, new Date(2019, 4, 4)));
+        userShows.add(new Show("4","Vira o disco e toca o mesmo","Toy", 30.14, new Date(2019, 4, 4)));*/
         adapter = new MyShowsRecyclerAdapter(userShows);
         recyclerView.setAdapter(adapter);
 

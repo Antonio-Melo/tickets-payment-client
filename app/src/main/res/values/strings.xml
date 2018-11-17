@@ -76,19 +76,28 @@
 
     <!-- Shows fragment begins -->
     <string name="shows_next_shows">Next Shows</string>
-    <string name="shows_my_shows">My Shows</string>
+    <string name="shows_my_shows">My Tickets</string>
     <!-- Shows fragment ends -->
 
     <!-- MyShows activity begins -->
-    <string name="my_shows_action_bar_title">My Shows</string>
+    <string name="my_shows_action_bar_title">My Tickets</string>
     <string name="my_shows_bar_text">|</string>
     <!-- MyShows activity ends -->
 
     <!-- NextShows activity begins -->
     <string name="next_shows_action_bar_title">Next Shows</string>
     <!-- NextShows activity ends -->
-    
+
     <!-- Options menu begins -->
     <string name="options_menu_sign_out_title">Sign Out</string>
+    <string name="title_activity_show">ShowActivity</string>
     <!-- Options menu ends -->
+
+    <!-- Activity activity begins -->
+    <string name="shows">Show: </string>
+    <string name="shows_artists">Artist: </string>
+    <string name="shows_number_of_tickets">Number of Tickets</string>
+    <string name="shows_add_to_cart">Add to Cart</string>
+    <string name="shows_added_to_cart">Added to Cart</string>
+    <!-- Activity activity ends -->
 </resources>

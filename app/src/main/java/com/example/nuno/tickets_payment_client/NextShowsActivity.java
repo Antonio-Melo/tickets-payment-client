@@ -1,9 +1,13 @@
 package com.example.nuno.tickets_payment_client;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
 
 import com.example.nuno.tickets_payment_client.logic.API;
 import com.example.nuno.tickets_payment_client.logic.Show;
@@ -34,30 +38,39 @@ public class NextShowsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.next_shows_recycler_view);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        // data
+
         nextShows = new ArrayList<>();
-        /*nextShows.add(new Show("Outra vez no Porto","Lartiste", 30.14, new Date(2019, 4, 4)));
-        nextShows.add(new Show("Maluma baby","Maluma", 30.14, new Date(2019, 4, 4)));
-        nextShows.add(new Show("J Balvin, baila reggaeton","J Balvin", 30.14, new Date(2019, 4, 4)));
-        nextShows.add(new Show("Vira o disco e toca o mesmo","Toy", 30.14, new Date(2019, 4, 4)));*/
+
         API.getShows(this);
 
         adapter = new NextShowsRecyclerAdapter(nextShows);
         recyclerView.setAdapter(adapter);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NextShowsActivity.this, CheckoutShowsActivity.class);
+                intent.putParcelableArrayListExtra("CART_SHOWS", adapter.getShowsCart());
+                startActivity(intent);
+            }
+        });
     }
 
     public void setNextShows(JSONArray nextShowsJSON) {
 
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat outputFormat= new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat outputFormat= new SimpleDateFormat("dd/MM/yyyy'|'HH:mm");
         for (int index = 0; index < nextShowsJSON.length(); index++){
             try {
 
                 JSONObject show = nextShowsJSON.getJSONObject(index);
-                nextShows.add(new Show(show.getString("name"), show.getString("artist"),
+                Log.d("CENAS", show.getString("date"));
+                Log.d("CENAS", outputFormat.format(inputFormat.parse(show.getString("date"))));
+                nextShows.add(new Show(show.getString("_id"), show.getString("name"), show.getString("artist"),
                         Double.parseDouble(show.getString("price")),
-                        outputFormat.parse(outputFormat.format(inputFormat.parse(show.getString("date"))))));
-
+                        outputFormat.format(inputFormat.parse(show.getString("date")))));
             } catch (JSONException | ParseException e) {
                 e.printStackTrace();
             }
