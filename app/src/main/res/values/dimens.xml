@@ -28,15 +28,17 @@
     <dimen name="fab_margin">16dp</dimen>
     <!-- Shows fragment ends -->
 
-    <!-- Shows activity begins -->
-    <dimen name="shows_activity_padding">10sp</dimen>
-    <dimen name="shows_name_font_size">30sp</dimen>
-    <dimen name="shows_artist_font_size">20sp</dimen>
-    <dimen name="shows_date_font_size">15sp</dimen>
-    <dimen name="shows_price_font_size">15sp</dimen>
-    <dimen name="shows_artist_bottom_margin">25sp</dimen>
-    <dimen name="shows_artist_left_margin">30sp</dimen>
-    <dimen name="shows_20_margin">20sp</dimen>
-    <dimen name="shows_10_text_size">10sp</dimen>
-    <!-- Shows activity ends -->
+    <!-- Ticket activity begins -->
+    <dimen name="ticket_activity_padding">10sp</dimen>
+    <dimen name="ticket_name_font_size">30sp</dimen>
+    <dimen name="ticket_artist_font_size">20sp</dimen>
+    <dimen name="ticket_date_font_size">15sp</dimen>
+    <dimen name="ticket_artist_bottom_margin">25sp</dimen>
+    <dimen name="ticket_artist_left_margin">30sp</dimen>
+    <dimen name="ticket_20_margin">20sp</dimen>
+    <dimen name="ticket_10_text_size">10sp</dimen>
+    <dimen name="ticket_5_dp_margin">5dp</dimen>
+    <dimen name="ticket_20_dp_margin">20dp</dimen>
+    <dimen name="ticket_30_dp_margin">30dp</dimen>
+    <!-- Ticket activity ends -->
 </resources>

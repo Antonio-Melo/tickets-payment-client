@@ -107,4 +107,9 @@
     <string name="checkout_shows_success_buy">Tickets bought!</string>
     <string name="checkout_shows_error_buy">Error buying tickets!!</string>
     <!-- Checkout Shows activity ends -->
+
+    <!-- Ticket activity begins -->
+    <string name="ticket_activity_title">Ticket</string>
+    <string name="ticket_activity_number_of_tickets">Number of Tickets:</string>
+    <!-- Ticket activity ends -->
 </resources>

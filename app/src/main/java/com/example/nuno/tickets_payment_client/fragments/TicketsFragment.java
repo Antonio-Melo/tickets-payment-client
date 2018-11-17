@@ -23,22 +23,6 @@ public class TicketsFragment extends Fragment {
     private MyShowsRecyclerAdapter adapter;
     private ArrayList<Show> userShows;
 
-    /*private Button.OnClickListener mOnButtonClickListener
-            = new Button.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.next_shows_button:
-                    nextActivity(new Intent(getActivity(), NextShowsActivity.class));
-                    break;
-                case R.id.my_shows_button:
-                    nextActivity(new Intent(getActivity(), MyShowsActivity.class));
-                    break;
-            }
-        }
-    };*/
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,14 +33,6 @@ public class TicketsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-       /* mainActivity = (MainActivity) getActivity();
-
-        // click listener on next shows button
-        mainActivity.findViewById(R.id.next_shows_button).setOnClickListener(mOnButtonClickListener);
-
-        // click listener on my shows button
-        mainActivity.findViewById(R.id.my_shows_button).setOnClickListener(mOnButtonClickListener);*/
-
         recyclerView = getActivity().findViewById(R.id.my_shows_recycler_view);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -66,7 +42,7 @@ public class TicketsFragment extends Fragment {
         userShows.add(new Show("2","Maluma baby","Maluma", 30.14, "04/04/2019 | 20:00"));
         userShows.add(new Show("3","J Balvin, baila reggaeton","J Balvin", 30.14, "04/04/2019 | 20:00"));
         userShows.add(new Show("4","Vira o disco e toca o mesmo","Toy", 30.14, "04/04/2019 | 20:00"));
-        adapter = new MyShowsRecyclerAdapter(userShows);
+        adapter = new MyShowsRecyclerAdapter(userShows, this);
         recyclerView.setAdapter(adapter);
     }
 }
