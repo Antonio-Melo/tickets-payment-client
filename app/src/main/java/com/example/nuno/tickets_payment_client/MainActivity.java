@@ -7,13 +7,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.nuno.tickets_payment_client.fragments.CafetariaFragment;
-import com.example.nuno.tickets_payment_client.fragments.HomeFragment;
 import com.example.nuno.tickets_payment_client.fragments.ShowsFragment;
+import com.example.nuno.tickets_payment_client.fragments.TicketsFragment;
 import com.example.nuno.tickets_payment_client.logic.User;
 
 import java.util.UUID;
@@ -31,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item .getItemId()) {
                 case R.id.navigation_home:
-                    selectedFragment = new HomeFragment();
+                    selectedFragment = new ShowsFragment();
                     break;
                 case R.id.navigation_shows:
-                    selectedFragment = new ShowsFragment();
+                    selectedFragment = new TicketsFragment();
                     break;
                 case R.id.navigation_cafetaria:
                     selectedFragment = new CafetariaFragment();
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sp = this.getSharedPreferences("Login", MODE_PRIVATE);
         if (sp.getBoolean("loggedIn", false)) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShowsFragment()).commit();
         }
         else {
             changeToRegisterActivity();

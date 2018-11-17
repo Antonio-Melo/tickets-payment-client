@@ -1,10 +1,8 @@
 package com.example.nuno.tickets_payment_client.logic;
 
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -14,10 +12,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nuno.tickets_payment_client.MainActivity;
-import com.example.nuno.tickets_payment_client.NextShowsActivity;
+import com.example.nuno.tickets_payment_client.fragments.ShowsFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,16 +33,16 @@ public class API {
     private static final String LOCAL_IP_ADDRESS = "10.227.155.2";
     private static String server_ip = LOCAL_IP_ADDRESS;
 
-    public static void getShows(final NextShowsActivity nextShowsActivity){
+    public static void getShows(final ShowsFragment showsFragment){
 
-        RequestQueue queue = Volley.newRequestQueue(nextShowsActivity.getBaseContext());
+        RequestQueue queue = Volley.newRequestQueue(showsFragment.getContext());
         String url = "http://" + server_ip + ":3000/shows/";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
-                nextShowsActivity.setNextShows(response);
+                showsFragment.setNextShows(response);
             }
         }, new Response.ErrorListener() {
             @Override

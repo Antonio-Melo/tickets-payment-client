@@ -3,7 +3,6 @@ package com.example.nuno.tickets_payment_client.recycler_adapters;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,6 @@ import android.widget.TextView;
 import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.logic.Show;
 
-import org.json.JSONArray;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class NextShowsRecyclerAdapter extends RecyclerView.Adapter<NextShowsRecyclerAdapter.NextShowViewHolder> {
@@ -38,7 +33,7 @@ public class NextShowsRecyclerAdapter extends RecyclerView.Adapter<NextShowsRecy
     public NextShowViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v;
 
-        v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_shows_item, viewGroup, false);
+        v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_next_shows, viewGroup, false);
 
         NextShowsRecyclerAdapter.NextShowViewHolder vHolder = new NextShowsRecyclerAdapter.NextShowViewHolder(v);
 
@@ -50,7 +45,6 @@ public class NextShowsRecyclerAdapter extends RecyclerView.Adapter<NextShowsRecy
 
         viewHolder.nameText.setText(showsList.get(i).getName());
         viewHolder.artistText.setText(showsList.get(i).getArtist());
-
         viewHolder.dateText.setText(showsList.get(i).getDate());
         viewHolder.priceText.setText(Double.toString(showsList.get(i).getPrice()) + "€");
 

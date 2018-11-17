@@ -10,8 +10,6 @@ import android.widget.TextView;
 import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.logic.Show;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class MyShowsRecyclerAdapter extends RecyclerView.Adapter<MyShowsRecyclerAdapter.MyShowViewHolder> {
@@ -27,7 +25,7 @@ public class MyShowsRecyclerAdapter extends RecyclerView.Adapter<MyShowsRecycler
     public MyShowViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v;
 
-        v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_shows_item, viewGroup, false);
+        v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_my_shows, viewGroup, false);
         MyShowViewHolder vHolder = new MyShowViewHolder(v);
 
         return vHolder;
@@ -38,9 +36,7 @@ public class MyShowsRecyclerAdapter extends RecyclerView.Adapter<MyShowsRecycler
 
         viewHolder.nameText.setText(showsList.get(i).getName());
         viewHolder.artistText.setText(showsList.get(i).getArtist());
-
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        viewHolder.dateText.setText(dateFormat.format(showsList.get(i).getDate()));
+        viewHolder.dateText.setText(showsList.get(i).getDate());
         viewHolder.priceText.setText(Double.toString(showsList.get(i).getPrice()) + "€");
 
     }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Casa da Música</string>
-    <string name="title_home">Home</string>
-    <string name="title_shows">Shows</string>
+    <string name="title_home">Shows</string>
+    <string name="title_shows">Tickets</string>
     <string name="title_cafetaria">Cafetaria</string>
     <string name="title_register">Register</string>
     <string name="title_login">Login</string>
