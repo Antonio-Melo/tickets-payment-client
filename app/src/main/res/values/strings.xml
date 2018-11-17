@@ -100,4 +100,11 @@
     <string name="shows_add_to_cart">Add to Cart</string>
     <string name="shows_added_to_cart">Added to Cart</string>
     <!-- Activity activity ends -->
+
+    <!-- Checkout Shows activity begins -->
+    <string name="checkout_shows_title">Checkout Shows</string>
+    <string name="checkout_shows_quantity_hint">Number of Tickets</string>
+    <string name="checkout_shows_success_buy">Tickets bought!</string>
+    <string name="checkout_shows_error_buy">Error buying tickets!!</string>
+    <!-- Checkout Shows activity ends -->
 </resources>

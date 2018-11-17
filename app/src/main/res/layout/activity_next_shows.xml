@@ -20,6 +20,7 @@
         android:layout_margin="16dp"
         android:layout_gravity="bottom|right"
         app:layout_anchor="@id/next_shows_recycler_view"
-        app:layout_anchorGravity="bottom|right|end"/>
+        app:layout_anchorGravity="bottom|right|end"
+        android:visibility="invisible"/>
 
 </android.support.design.widget.CoordinatorLayout>

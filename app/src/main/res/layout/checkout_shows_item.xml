@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10sp"
+    android:layout_marginLeft="10sp"
+    android:layout_marginRight="10sp"
+    android:stretchColumns="1">
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/checkout_shows_name_text_view"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:textSize="25sp"/>
+
+    </TableRow>
+    <TableRow>
+
+        <TextView
+            android:id="@+id/checkout_shows_artist_text_view"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"/>
+
+    </TableRow>
+
+    <TableRow android:layout_width="fill_parent">
+
+        <TextView
+            android:id="@+id/checkout_shows_date_text_view"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/checkout_shows_price_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_gravity="end"/>
+
+    </TableRow>
+
+    <TableRow android:layout_width="fill_parent" android:gravity="end">
+
+        <EditText
+            android:id="@+id/checkout_shows_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/checkout_shows_quantity_hint"
+            android:inputType="number" />
+
+    </TableRow>
+
+    <View
+        android:id="@+id/shows_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginRight="5sp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="20sp"/>
+
+</TableLayout>

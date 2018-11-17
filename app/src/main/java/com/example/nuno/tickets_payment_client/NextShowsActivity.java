@@ -43,9 +43,6 @@ public class NextShowsActivity extends AppCompatActivity {
 
         API.getShows(this);
 
-        adapter = new NextShowsRecyclerAdapter(nextShows);
-        recyclerView.setAdapter(adapter);
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
 
@@ -56,18 +53,19 @@ public class NextShowsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        adapter = new NextShowsRecyclerAdapter(nextShows, fab);
+        recyclerView.setAdapter(adapter);
     }
 
     public void setNextShows(JSONArray nextShowsJSON) {
 
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat outputFormat= new SimpleDateFormat("dd/MM/yyyy'|'HH:mm");
+        SimpleDateFormat outputFormat= new SimpleDateFormat("dd/MM/yyyy' | 'HH:mm");
         for (int index = 0; index < nextShowsJSON.length(); index++){
             try {
 
                 JSONObject show = nextShowsJSON.getJSONObject(index);
-                Log.d("CENAS", show.getString("date"));
-                Log.d("CENAS", outputFormat.format(inputFormat.parse(show.getString("date"))));
                 nextShows.add(new Show(show.getString("_id"), show.getString("name"), show.getString("artist"),
                         Double.parseDouble(show.getString("price")),
                         outputFormat.format(inputFormat.parse(show.getString("date")))));

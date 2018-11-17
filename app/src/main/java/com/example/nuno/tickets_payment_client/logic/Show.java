@@ -69,7 +69,7 @@ public class Show implements Parcelable {
         dest.writeString(id);
         dest.writeString(name);
         dest.writeString(artist);
-        dest.writeString(Double.toString(price));
+        dest.writeDouble(price);
         dest.writeString(date);
     }
 }

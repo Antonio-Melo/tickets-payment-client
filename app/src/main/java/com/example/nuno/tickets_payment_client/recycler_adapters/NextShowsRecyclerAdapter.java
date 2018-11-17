@@ -1,6 +1,7 @@
 package com.example.nuno.tickets_payment_client.recycler_adapters;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,9 +25,12 @@ public class NextShowsRecyclerAdapter extends RecyclerView.Adapter<NextShowsRecy
 
     private ArrayList<Show> showsCart;
 
-    public NextShowsRecyclerAdapter(ArrayList<Show> showsList) {
+    private FloatingActionButton fab;
+
+    public NextShowsRecyclerAdapter(ArrayList<Show> showsList, FloatingActionButton fab) {
         this.showsList = showsList;
         this.showsCart = new ArrayList<>();
+        this.fab = fab;
     }
 
     @NonNull
@@ -35,8 +39,6 @@ public class NextShowsRecyclerAdapter extends RecyclerView.Adapter<NextShowsRecy
         View v;
 
         v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_shows_item, viewGroup, false);
-
-        v.setTag(showsList.get(i));
 
         NextShowsRecyclerAdapter.NextShowViewHolder vHolder = new NextShowsRecyclerAdapter.NextShowViewHolder(v);
 
@@ -52,16 +54,6 @@ public class NextShowsRecyclerAdapter extends RecyclerView.Adapter<NextShowsRecy
         viewHolder.dateText.setText(showsList.get(i).getDate());
         viewHolder.priceText.setText(Double.toString(showsList.get(i).getPrice()) + "€");
 
-       /* viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Log.d("NEXT SHOWS", "boas");
-                Show show = (Show)v.getTag();
-                Log.d("NEXT SHOWS", showsList.get(i).getName());
-            }
-        });*/
-
         viewHolder.button.setOnClickListener(new Button.OnClickListener() {
 
             @Override
@@ -75,6 +67,11 @@ public class NextShowsRecyclerAdapter extends RecyclerView.Adapter<NextShowsRecy
                     showsCart.add(show);
                     viewHolder.button.setText(R.string.shows_added_to_cart);
                 }
+
+                if (showsCart.size() >= 1 && fab.getVisibility() != View.VISIBLE)
+                    fab.show();
+                else if (showsCart.size() == 0 && fab.getVisibility() == View.VISIBLE)
+                    fab.hide();
             }
         });
 
