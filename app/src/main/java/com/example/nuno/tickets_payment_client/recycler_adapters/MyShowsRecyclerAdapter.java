@@ -12,18 +12,18 @@ import android.widget.TextView;
 import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.TicketActivity;
 import com.example.nuno.tickets_payment_client.fragments.TicketsFragment;
-import com.example.nuno.tickets_payment_client.logic.Show;
+import com.example.nuno.tickets_payment_client.logic.Ticket;
 
 import java.util.ArrayList;
 
 public class MyShowsRecyclerAdapter extends RecyclerView.Adapter<MyShowsRecyclerAdapter.MyShowViewHolder> {
 
-    private ArrayList<Show> showsList;
+    private ArrayList<Ticket> ticketList;
 
     private TicketsFragment ticketsFragment;
 
-    public MyShowsRecyclerAdapter(ArrayList<Show> showsList, TicketsFragment ticketsFragment) {
-        this.showsList = showsList;
+    public MyShowsRecyclerAdapter(ArrayList<Ticket> ticketList, TicketsFragment ticketsFragment) {
+        this.ticketList = ticketList;
         this.ticketsFragment = ticketsFragment;
     }
 
@@ -41,19 +41,18 @@ public class MyShowsRecyclerAdapter extends RecyclerView.Adapter<MyShowsRecycler
     @Override
     public void onBindViewHolder(@NonNull MyShowViewHolder viewHolder, final int i) {
 
-        viewHolder.nameText.setText(showsList.get(i).getName());
-        viewHolder.artistText.setText(showsList.get(i).getArtist());
-        viewHolder.dateText.setText(showsList.get(i).getDate());
+        viewHolder.nameText.setText(ticketList.get(i).getShow().getName());
+        viewHolder.artistText.setText(ticketList.get(i).getShow().getArtist());
+        viewHolder.dateText.setText(ticketList.get(i).getShow().getDate());
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Log.d("MY SHOWS", showsList.get(i).getName());
+                Log.d("MY SHOWS", ticketList.get(i).getShow().getName());
                 Log.d("MY SHOWS", "A trocar de actividade");
                 Intent intent = new Intent(ticketsFragment.getActivity(), TicketActivity.class);
-                //intent.putParcelableArrayListExtra("CART_SHOWS", adapter.getShowsCart());
-                intent.putExtra("TICKET", showsList.get(i));
+                intent.putExtra("USER_TICKET", ticketList.get(i));
                 ticketsFragment.getActivity().startActivity(intent);
             }
         });
@@ -61,7 +60,7 @@ public class MyShowsRecyclerAdapter extends RecyclerView.Adapter<MyShowsRecycler
 
     @Override
     public int getItemCount() {
-        return showsList.size();
+        return ticketList.size();
     }
 
     public static class MyShowViewHolder extends RecyclerView.ViewHolder {

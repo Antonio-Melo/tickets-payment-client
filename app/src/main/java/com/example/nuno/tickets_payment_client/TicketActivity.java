@@ -1,19 +1,22 @@
 package com.example.nuno.tickets_payment_client;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.nuno.tickets_payment_client.logic.Show;
+import com.example.nuno.tickets_payment_client.logic.Ticket;
+import com.example.nuno.tickets_payment_client.logic.User;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-import static android.graphics.Color.BLACK;
-import static android.graphics.Color.WHITE;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class TicketActivity extends AppCompatActivity {
 
@@ -22,7 +25,7 @@ public class TicketActivity extends AppCompatActivity {
     public final static int WIDTH = 800;
     public final static int HEIGHT = 800;
 
-    private Show show;
+    private Ticket ticket;
 
     private ImageView qrCodeImageView;
 
@@ -31,17 +34,27 @@ public class TicketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
 
-        show = getIntent().getExtras().getParcelable("TICKET");
+        ticket = getIntent().getExtras().getParcelable("USER_TICKET");
 
-        ((TextView)findViewById(R.id.show_name_text_view)).setText(show.getName());
-        ((TextView)findViewById(R.id.show_artist_text_view)).setText(show.getArtist());
-        ((TextView)findViewById(R.id.show_date_text_view)).setText(show.getDate());
+        ((TextView)findViewById(R.id.show_name_text_view)).setText(ticket.getShow().getName());
+        ((TextView)findViewById(R.id.show_artist_text_view)).setText(ticket.getShow().getArtist());
+        ((TextView)findViewById(R.id.show_date_text_view)).setText(ticket.getShow().getDate());
+        ((TextView)findViewById(R.id.show_number_of_tickets)).setText(String.valueOf(ticket.getNumberOfTickets()));
 
-        qrCodeImageView = findViewById(R.id.ticket_qr_code);
         try {
-            Bitmap bitmap = encodeAsBitmap("boas tardes");
+            SharedPreferences sp = this.getSharedPreferences("Login", MODE_PRIVATE);
+            User user = MainActivity.getUserSession(sp);
+            JSONObject valueToQRCode = new JSONObject();
+            valueToQRCode.put("uuid", user.getUserUUID().toString());
+            valueToQRCode.put("tickets", ticket.getTicketsUuids());
+
+            qrCodeImageView = findViewById(R.id.ticket_qr_code);
+
+            Bitmap bitmap = encodeAsBitmap(valueToQRCode.toString());
             qrCodeImageView.setImageBitmap(bitmap);
         } catch (WriterException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 

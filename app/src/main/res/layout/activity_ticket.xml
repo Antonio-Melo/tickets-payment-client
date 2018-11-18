@@ -68,7 +68,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/ticket_5_dp_margin"
         android:layout_marginTop="@dimen/ticket_30_dp_margin"
-        android:text="5"
         android:textSize="@dimen/ticket_date_font_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
