@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10sp"
+    android:layout_marginLeft="10sp"
+    android:layout_marginRight="10sp">
+
+    <TableRow>
+
+        <TextView
+                android:id="@+id/transaction_fragment_type"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/cafetaria_20_sp_font_size"
+            android:text="@string/transactions_fragment_type"/>
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/transaction_fragment_amount"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/cafetaria_20_sp_font_size"
+            android:text="@string/transactions_fragment_amount"/>
+
+    </TableRow>
+
+    <View
+        android:id="@+id/shows_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginRight="5sp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="20sp"/>
+
+</TableLayout>

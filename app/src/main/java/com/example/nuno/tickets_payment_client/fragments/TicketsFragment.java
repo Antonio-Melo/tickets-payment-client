@@ -53,7 +53,6 @@ public class TicketsFragment extends Fragment {
 
         SharedPreferences sp = this.getActivity().getSharedPreferences("Login", MODE_PRIVATE);
         User user = MainActivity.getUserSession(sp);
-        Log.d("TICKETS", user.getUserUUID().toString());
 
         API.getUserTickets(this, user.getUserUUID().toString());
 

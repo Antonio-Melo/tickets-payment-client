@@ -128,4 +128,9 @@
         <item>DRINK</item>
     </string-array>
     <!-- Cafetaria fragment ends -->
+
+    <!-- Transactions fragment begins -->
+    <string name="transactions_fragment_type">Transaction Type </string>
+    <string name="transactions_fragment_amount">Amount </string>
+    <!-- Transactions fragment ends -->
 </resources>

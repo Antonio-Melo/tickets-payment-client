@@ -49,8 +49,6 @@ public class MyShowsRecyclerAdapter extends RecyclerView.Adapter<MyShowsRecycler
 
             @Override
             public void onClick(View v) {
-                Log.d("MY SHOWS", ticketList.get(i).getShow().getName());
-                Log.d("MY SHOWS", "A trocar de actividade");
                 Intent intent = new Intent(ticketsFragment.getActivity(), TicketActivity.class);
                 intent.putExtra("USER_TICKET", ticketList.get(i));
                 ticketsFragment.getActivity().startActivity(intent);
