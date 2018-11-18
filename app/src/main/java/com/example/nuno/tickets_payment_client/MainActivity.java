@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import com.example.nuno.tickets_payment_client.fragments.CafetariaFragment;
 import com.example.nuno.tickets_payment_client.fragments.ShowsFragment;
 import com.example.nuno.tickets_payment_client.fragments.TicketsFragment;
+import com.example.nuno.tickets_payment_client.fragments.TransactionsFragment;
 import com.example.nuno.tickets_payment_client.logic.User;
 
 import java.util.UUID;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_cafetaria:
                     selectedFragment = new CafetariaFragment();
+                    break;
+                case R.id.navigation_transactions:
+                    selectedFragment = new TransactionsFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();

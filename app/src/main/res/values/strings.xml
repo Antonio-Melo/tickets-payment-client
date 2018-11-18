@@ -5,6 +5,7 @@
     <string name="title_cafetaria">Cafetaria</string>
     <string name="title_register">Register</string>
     <string name="title_login">Login</string>
+    <string name="title_transactions">Transactions</string>
 
     <!-- Register fragment begins -->
     <string name="register_title">Sign Up</string>
