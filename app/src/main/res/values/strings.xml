@@ -112,4 +112,19 @@
     <string name="ticket_activity_title">Ticket</string>
     <string name="ticket_activity_number_of_tickets">Number of Tickets:</string>
     <!-- Ticket activity ends -->
+
+    <!-- Cafetaria fragment begins -->
+    <string name="cafetaria_fragment_title">Make Your Order</string>
+    <string name="cafetaria_fragment_quantity_of_popcorn">Quantity of popcorn:</string>
+    <string name="cafetaria_fragment_quantity_of_sandwich">Quantity of sandwich:</string>
+    <string name="cafetaria_fragment_quantity_of_coffee">Quantity of coffee:</string>
+    <string name="cafetaria_fragment_quantity_of_soda">Quantity of soda:</string>
+    <string name="cafetaria_fragment_voucher_1">Voucher 1:</string>
+    <string name="cafetaria_fragment_voucher_2">Voucher 2:</string>
+    <string name="cafetaria_fragment_submit_button">Submit Order</string>
+    <string-array name="cafetaria_vouchers_type">
+        <item>FOOD</item>
+        <item>DRINK</item>
+    </string-array>
+    <!-- Cafetaria fragment ends -->
 </resources>

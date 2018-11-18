@@ -14,6 +14,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nuno.tickets_payment_client.MainActivity;
+import com.example.nuno.tickets_payment_client.fragments.CafetariaFragment;
 import com.example.nuno.tickets_payment_client.fragments.ShowsFragment;
 import com.example.nuno.tickets_payment_client.fragments.TicketsFragment;
 
@@ -184,6 +185,30 @@ public class API {
                 Log.d(TAG, response.toString());
                 try {
                     ticketsFragment.setUserTickets(response.getJSONArray("shows"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "Getting tickets error");
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+    }
+
+    public static void getUserVouchers(final CafetariaFragment cafetariaFragment, final String uuid) {
+        RequestQueue queue = Volley.newRequestQueue(cafetariaFragment.getContext());
+        String url = "http://" + server_ip + ":3000/users/vouchers?uuid=" + uuid;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, response.toString());
+                try {
+                    cafetariaFragment.setUserVouchers(response.getJSONArray("vouchers"), uuid);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -41,4 +41,13 @@
     <dimen name="ticket_20_dp_margin">20dp</dimen>
     <dimen name="ticket_30_dp_margin">30dp</dimen>
     <!-- Ticket activity ends -->
+
+    <!-- Cafetaria fragment begins -->
+    <dimen name="cafetaria_name_font_size">25sp</dimen>
+    <dimen name="cafetaria_10_sp_font_size">10sp</dimen>
+    <dimen name="cafetaria_15_sp_font_size">15sp</dimen>
+    <dimen name="cafetaria_20_sp_font_size">20sp</dimen>
+    <dimen name="cafetaria_10_dp_margin">10dp</dimen>
+    <dimen name="cafetaria_15_dp_margin">15dp</dimen>
+    <!-- Cafetaria fragment ends -->
 </resources>

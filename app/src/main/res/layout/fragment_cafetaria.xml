@@ -1,12 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cafetaria_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cafetaria fragment"
-        android:layout_centerInParent="true"/>
 
-</RelativeLayout>
+    <TableRow
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/ticket_5_dp_margin">
+
+        <TextView
+            android:id="@+id/cafetaria_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ticket_20_dp_margin"
+            android:text="@string/cafetaria_fragment_title"
+            android:textSize="@dimen/cafetaria_name_font_size"/>
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/ticket_5_dp_margin">
+
+        <TextView
+            android:id="@+id/cafetaria_quantity_of_popcorn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cafetaria_fragment_quantity_of_popcorn"
+            android:textSize="@dimen/cafetaria_20_sp_font_size" />
+
+        <EditText
+            android:id="@+id/cafetaria_quantity_of_popcorn_holder"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ticket_5_dp_margin"
+            android:inputType="number"/>
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/ticket_5_dp_margin">
+
+        <TextView
+            android:id="@+id/cafetaria_quantity_of_sandwich"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cafetaria_fragment_quantity_of_sandwich"
+            android:textSize="@dimen/cafetaria_20_sp_font_size" />
+
+        <EditText
+            android:id="@+id/cafetaria_quantity_of_sandwich_holder"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ticket_5_dp_margin"
+            android:inputType="number"/>
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/ticket_5_dp_margin">
+
+        <TextView
+            android:id="@+id/cafetaria_quantity_of_coffee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cafetaria_fragment_quantity_of_coffee"
+            android:textSize="@dimen/cafetaria_20_sp_font_size" />
+
+        <EditText
+            android:id="@+id/cafetaria_quantity_of_coffee_holder"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ticket_5_dp_margin"
+            android:inputType="number"/>
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/cafetaria_15_dp_margin">
+
+        <TextView
+            android:id="@+id/cafetaria_quantity_of_soda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cafetaria_fragment_quantity_of_soda"
+            android:textSize="@dimen/cafetaria_20_sp_font_size" />
+
+        <EditText
+            android:id="@+id/cafetaria_quantity_of_soda_holder"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ticket_5_dp_margin"
+            android:inputType="number"/>
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/cafetaria_15_dp_margin">
+
+        <TextView
+            android:id="@+id/cafetaria_voucher_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cafetaria_fragment_voucher_1"
+            android:textSize="@dimen/cafetaria_20_sp_font_size" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/cafetaria_spinner_1"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:entries="@array/cafetaria_vouchers_type"
+            android:layout_marginLeft="@dimen/ticket_5_dp_margin" />
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/cafetaria_15_dp_margin">
+
+        <TextView
+            android:id="@+id/cafetaria_voucher_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cafetaria_fragment_voucher_2"
+            android:textSize="@dimen/cafetaria_20_sp_font_size" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/cafetaria_spinner_2"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:entries="@array/cafetaria_vouchers_type"
+            android:layout_marginLeft="@dimen/ticket_5_dp_margin" />
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/cafetaria_15_dp_margin">
+
+        <Button
+            android:id="@+id/cafetaria_submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cafetaria_fragment_submit_button"/>
+
+    </TableRow>
+
+    <TableRow android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/cafetaria_number_of_drink_vouchers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/cafetaria_10_sp_font_size"
+            android:layout_gravity="center_horizontal"/>
+
+    </TableRow>
+
+    <TableRow android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/cafetaria_number_of_food_vouchers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/cafetaria_10_sp_font_size"
+            android:layout_gravity="center_horizontal"/>
+
+    </TableRow>
+
+    <TableRow android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/cafetaria_number_of_fivepercent_vouchers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/cafetaria_10_sp_font_size"
+            android:layout_gravity="center_horizontal"/>
+
+    </TableRow>
+
+</TableLayout>
