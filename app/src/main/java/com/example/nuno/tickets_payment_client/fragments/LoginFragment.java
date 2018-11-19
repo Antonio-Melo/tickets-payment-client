@@ -16,6 +16,8 @@ import com.example.nuno.tickets_payment_client.RegisterActivity;
 import com.example.nuno.tickets_payment_client.logic.API;
 import com.example.nuno.tickets_payment_client.logic.User;
 
+import java.security.KeyStore;
+
 public class LoginFragment extends Fragment {
 
     private RegisterActivity registerActivity;

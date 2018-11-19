@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
             KeyStore ks = KeyStore.getInstance(ANDROID_KEYSTORE);
             ks.load(null);
             KeyStore.Entry entry = ks.getEntry(user.getUsername(), null);
-            if (null == null) {
+            if (entry == null) {
                 Calendar start = new GregorianCalendar();
                 Calendar end = new GregorianCalendar();
                 end.add(Calendar.YEAR, 20);
