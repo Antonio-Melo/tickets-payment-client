@@ -73,6 +73,7 @@
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="login_button">Login</string>
+    <string name="login_error">Username or password invalid!</string>
     <!-- Login fragment ends -->
 
     <!-- Shows fragment begins -->

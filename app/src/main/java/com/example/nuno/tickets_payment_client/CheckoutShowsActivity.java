@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.example.nuno.tickets_payment_client.logic.API;
 import com.example.nuno.tickets_payment_client.logic.Show;
 import com.example.nuno.tickets_payment_client.logic.User;
 import com.example.nuno.tickets_payment_client.recycler_adapters.CheckoutShowsRecyclerAdapter;
@@ -85,14 +86,11 @@ public class CheckoutShowsActivity extends AppCompatActivity {
 
                     JwtBuilder jws = Jwts.builder();
                     Log.d("JWT", jws.setPayload(order.toString()).signWith(privateKey).compact());
+
+                    API.buyTickets(CheckoutShowsActivity.this, jws.setPayload(order.toString()).signWith(privateKey).compact());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-                Snackbar snackbar = Snackbar.make(CheckoutShowsActivity.this.findViewById(R.id.checkout_coordinator_layout),
-                        R.string.checkout_shows_success_buy, Snackbar.LENGTH_LONG);
-
-                snackbar.show();
 
                 /*Intent intent = new Intent(CheckoutShowsActivity.this, NextShowsActivity.class);
                 startActivity(intent);*/

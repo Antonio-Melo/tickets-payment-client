@@ -51,6 +51,19 @@
             android:layout_marginLeft="@dimen/login_button_horizontal_margin"
             android:layout_marginRight="@dimen/login_button_horizontal_margin"
             android:layout_marginTop="@dimen/login_button_vertical_margin"/>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/login_error"
+                android:text="@string/login_error"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/login_button_horizontal_margin"
+                android:textColor="@color/colorPrimary"
+                android:gravity="center"
+                android:visibility="invisible"/>
+
+        </TableRow>
     </TableLayout>
 
 </LinearLayout>

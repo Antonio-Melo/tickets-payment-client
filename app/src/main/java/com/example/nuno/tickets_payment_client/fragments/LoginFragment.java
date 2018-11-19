@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.RegisterActivity;
@@ -25,6 +26,8 @@ public class LoginFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
+            ((TextView)registerActivity.findViewById(R.id.login_error)).setVisibility(View.INVISIBLE);
+
             String username = ((EditText)registerActivity.findViewById(R.id.login_username_input)).getText().toString();
             String password = ((EditText)registerActivity.findViewById(R.id.login_password_input)).getText().toString();
 
@@ -32,7 +35,7 @@ public class LoginFragment extends Fragment {
             user.setUsername(username);
             registerActivity.generateAndStoreKeys(user);
 
-            API.login(getContext(), username, password, user.getUserPublicKey());
+            API.login(LoginFragment.this, username, password, user.getUserPublicKey());
         }
     };
 

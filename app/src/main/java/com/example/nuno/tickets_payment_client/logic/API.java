@@ -3,7 +3,9 @@ package com.example.nuno.tickets_payment_client.logic;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -13,8 +15,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.nuno.tickets_payment_client.CheckoutShowsActivity;
 import com.example.nuno.tickets_payment_client.MainActivity;
+import com.example.nuno.tickets_payment_client.R;
 import com.example.nuno.tickets_payment_client.fragments.CafetariaFragment;
+import com.example.nuno.tickets_payment_client.fragments.LoginFragment;
 import com.example.nuno.tickets_payment_client.fragments.ShowsFragment;
 import com.example.nuno.tickets_payment_client.fragments.TicketsFragment;
 import com.example.nuno.tickets_payment_client.fragments.TransactionsFragment;
@@ -33,7 +38,7 @@ public class API {
 
     private static final String TAG = "API";
     private static final String EMULATOR_IP = "10.0.2.2";
-    private static final String LOCAL_IP_ADDRESS = "192.168.1.9";
+    private static final String LOCAL_IP_ADDRESS = "192.168.1.4";
     private static String server_ip = LOCAL_IP_ADDRESS;
 
     public static void getShows(final ShowsFragment showsFragment){
@@ -133,9 +138,9 @@ public class API {
         }
     }
 
-    public static void login(final Context context, final String username, final String password, final String userPublicKey) {
+    public static void login(final LoginFragment loginFragment, final String username, final String password, final String userPublicKey) {
 
-        RequestQueue queue = Volley.newRequestQueue(context);
+        RequestQueue queue = Volley.newRequestQueue(loginFragment.getContext());
         String url = "http://" + server_ip +":3000/users/signin";
 
         final JSONObject jsonBody = new JSONObject();
@@ -155,13 +160,13 @@ public class API {
                 try {
                     Log.d(TAG, response.toString());
 
-                    Intent intent = new Intent(context, MainActivity.class);
+                    Intent intent = new Intent(loginFragment.getContext(), MainActivity.class);
 
-                    SharedPreferences sp = context.getSharedPreferences("Login", MODE_PRIVATE);
+                    SharedPreferences sp = loginFragment.getContext().getSharedPreferences("Login", MODE_PRIVATE);
                     MainActivity.saveUserSession(sp, response.get("uuid").toString(), response.getString("username"),
                             response.getString("name"), response.getString("email"));
 
-                    context.startActivity(intent);
+                    loginFragment.getContext().startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -170,6 +175,7 @@ public class API {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, "login error");
+                loginFragment.getActivity().findViewById(R.id.login_error).setVisibility(View.VISIBLE);
             }
         });
 
@@ -242,6 +248,43 @@ public class API {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, "Getting tickets error");
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+    }
+
+    public static void buyTickets(final CheckoutShowsActivity checkoutShowsActivity, String messageEncoded) {
+        RequestQueue queue = Volley.newRequestQueue(checkoutShowsActivity);
+        String url = "http://" + server_ip +":3000/users/tickets";
+
+        final JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("message", messageEncoded);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, "buying ticket success");
+
+                Snackbar snackbar = Snackbar.make(checkoutShowsActivity.findViewById(R.id.checkout_coordinator_layout),
+                        R.string.checkout_shows_success_buy, Snackbar.LENGTH_LONG);
+
+                snackbar.show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "buying ticket error");
+                Snackbar snackbar = Snackbar.make(checkoutShowsActivity.findViewById(R.id.checkout_coordinator_layout),
+                        R.string.checkout_shows_error_buy, Snackbar.LENGTH_LONG);
+
+                snackbar.show();
+
             }
         });
 
