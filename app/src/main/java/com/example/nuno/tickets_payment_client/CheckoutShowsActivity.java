@@ -17,12 +17,15 @@ import com.example.nuno.tickets_payment_client.recycler_adapters.CheckoutShowsRe
 import com.example.nuno.tickets_payment_client.recycler_adapters.NextShowsRecyclerAdapter;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
+import java.security.KeyStore;
+import java.security.PrivateKey;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
 
 public class CheckoutShowsActivity extends AppCompatActivity {
 
@@ -75,9 +78,14 @@ public class CheckoutShowsActivity extends AppCompatActivity {
 
                     Log.d("CHECKOUT", order.toString());
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
+                    KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+                    keyStore.load(null);
+                    KeyStore.Entry entry = keyStore.getEntry(user.getUsername(), null);
+                    PrivateKey privateKey = ((KeyStore.PrivateKeyEntry) entry).getPrivateKey();
+
+                    JwtBuilder jws = Jwts.builder();
+                    Log.d("JWT", jws.setPayload(order.toString()).signWith(privateKey).compact());
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 

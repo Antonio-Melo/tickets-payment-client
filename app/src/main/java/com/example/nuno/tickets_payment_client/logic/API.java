@@ -33,7 +33,7 @@ public class API {
 
     private static final String TAG = "API";
     private static final String EMULATOR_IP = "10.0.2.2";
-    private static final String LOCAL_IP_ADDRESS = "192.168.1.4";
+    private static final String LOCAL_IP_ADDRESS = "192.168.1.9";
     private static String server_ip = LOCAL_IP_ADDRESS;
 
     public static void getShows(final ShowsFragment showsFragment){
