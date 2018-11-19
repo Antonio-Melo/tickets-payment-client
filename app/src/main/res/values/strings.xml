@@ -124,8 +124,10 @@
     <string name="cafetaria_fragment_voucher_2">Voucher 2:</string>
     <string name="cafetaria_fragment_submit_button">Submit Order</string>
     <string-array name="cafetaria_vouchers_type">
+        <item>NONE</item>
         <item>FOOD</item>
         <item>DRINK</item>
+        <item>FIVEPERCENT</item>
     </string-array>
     <!-- Cafetaria fragment ends -->
 

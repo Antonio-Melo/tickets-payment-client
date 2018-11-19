@@ -109,9 +109,9 @@
             android:text="@string/cafetaria_fragment_voucher_1"
             android:textSize="@dimen/cafetaria_20_sp_font_size" />
 
-        <android.support.v7.widget.AppCompatSpinner
+        <Spinner
             android:id="@+id/cafetaria_spinner_1"
-            android:layout_width="200px"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/cafetaria_vouchers_type"
             android:layout_marginLeft="@dimen/ticket_5_dp_margin" />
@@ -129,9 +129,9 @@
             android:text="@string/cafetaria_fragment_voucher_2"
             android:textSize="@dimen/cafetaria_20_sp_font_size" />
 
-        <android.support.v7.widget.AppCompatSpinner
+        <Spinner
             android:id="@+id/cafetaria_spinner_2"
-            android:layout_width="200px"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/cafetaria_vouchers_type"
             android:layout_marginLeft="@dimen/ticket_5_dp_margin" />

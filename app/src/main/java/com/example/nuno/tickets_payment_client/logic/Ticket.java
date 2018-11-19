@@ -3,6 +3,8 @@ package com.example.nuno.tickets_payment_client.logic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class Ticket implements Parcelable {
@@ -45,8 +47,14 @@ public class Ticket implements Parcelable {
         return numberOfTickets;
     }
 
-    public ArrayList<String> getTicketsUuids() {
-        return ticketsUuids;
+    public JSONArray getTicketsUuids() {
+
+        JSONArray jsonArray = new JSONArray();
+        for (int i = 0; i < ticketsUuids.size(); i++) {
+            jsonArray.put(ticketsUuids.get(i));
+        }
+
+        return jsonArray;
     }
 
     @Override
