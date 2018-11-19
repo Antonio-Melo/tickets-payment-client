@@ -38,13 +38,14 @@ public class API {
 
     private static final String TAG = "API";
     private static final String EMULATOR_IP = "10.0.2.2";
-    private static final String LOCAL_IP_ADDRESS = "10.227.155.2";
-    private static String server_ip = LOCAL_IP_ADDRESS;
+    private static final String LOCAL_IP_ADDRESS = "10.227.151.20:3000";
+    private static final String PUBLIC_IP_ADDRESS = "tickets-payment-rest-api.herokuapp.com";
+    private static String server_ip = PUBLIC_IP_ADDRESS;
 
     public static void getShows(final ShowsFragment showsFragment){
 
         RequestQueue queue = Volley.newRequestQueue(showsFragment.getContext());
-        String url = "http://" + server_ip + ":3000/shows/";
+        String url = "http://" + server_ip + "/shows/";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
@@ -65,7 +66,7 @@ public class API {
     public static void register(final Context context, final User user) {
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "http://" + server_ip + ":3000/users/signup";
+        String url = "http://" + server_ip + "/users/signup";
 
         try {
             final JSONObject jsonBody = new JSONObject();
@@ -141,7 +142,7 @@ public class API {
     public static void login(final LoginFragment loginFragment, final String username, final String password, final String userPublicKey) {
 
         RequestQueue queue = Volley.newRequestQueue(loginFragment.getContext());
-        String url = "http://" + server_ip +":3000/users/signin";
+        String url = "http://" + server_ip +"/users/signin";
 
         final JSONObject jsonBody = new JSONObject();
         try {
@@ -184,7 +185,7 @@ public class API {
 
     public static void getUserTickets(final TicketsFragment ticketsFragment, final String uuid) {
         RequestQueue queue = Volley.newRequestQueue(ticketsFragment.getContext());
-        String url = "http://" + server_ip + ":3000/users/tickets?uuid=" + uuid;
+        String url = "http://" + server_ip + "/users/tickets?uuid=" + uuid;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -208,7 +209,7 @@ public class API {
 
     public static void getUserVouchers(final CafetariaFragment cafetariaFragment, final String uuid) {
         RequestQueue queue = Volley.newRequestQueue(cafetariaFragment.getContext());
-        String url = "http://" + server_ip + ":3000/users/vouchers?uuid=" + uuid;
+        String url = "http://" + server_ip + "/users/vouchers?uuid=" + uuid;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -232,7 +233,7 @@ public class API {
 
     public static void getUserTransactions(final TransactionsFragment transactionsFragment, final String uuid) {
         RequestQueue queue = Volley.newRequestQueue(transactionsFragment.getContext());
-        String url = "http://" + server_ip + ":3000/users/transactions?uuid=" + uuid;
+        String url = "http://" + server_ip + "/users/transactions?uuid=" + uuid;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -256,7 +257,7 @@ public class API {
 
     public static void buyTickets(final CheckoutShowsActivity checkoutShowsActivity, String messageEncoded) {
         RequestQueue queue = Volley.newRequestQueue(checkoutShowsActivity);
-        String url = "http://" + server_ip +":3000/users/tickets";
+        String url = "http://" + server_ip +"/users/tickets";
 
         final JSONObject jsonBody = new JSONObject();
         try {
@@ -293,7 +294,7 @@ public class API {
 
     public static void orderCafetaria(final CafetariaFragment cafetariaFragment, String messageEncoded) {
         RequestQueue queue = Volley.newRequestQueue(cafetariaFragment.getContext());
-        String url = "http://" + server_ip +":3000/users/order";
+        String url = "http://" + server_ip +"/users/order";
 
         final JSONObject jsonBody = new JSONObject();
         try {
@@ -329,7 +330,7 @@ public class API {
 
     public static void validateVouchers(final CafetariaFragment cafetariaFragment, JSONObject vouchers) {
         RequestQueue queue = Volley.newRequestQueue(cafetariaFragment.getContext());
-        String url = "http://" + server_ip +":3000/validation/vouchers";
+        String url = "http://" + server_ip +"/validation/vouchers";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, vouchers, new Response.Listener<JSONObject>() {
             @Override

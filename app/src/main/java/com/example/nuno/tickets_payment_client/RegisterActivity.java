@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
             KeyStore ks = KeyStore.getInstance(ANDROID_KEYSTORE);
             ks.load(null);
             KeyStore.Entry entry = ks.getEntry(user.getUsername(), null);
-            if (entry == null) {
+            //if (null == null) {
                 Calendar start = new GregorianCalendar();
                 Calendar end = new GregorianCalendar();
                 end.add(Calendar.YEAR, 20);
@@ -89,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                 KeyPair kp = kgen.generateKeyPair();
 
                 user.setUserPublicKey(new String(Base64.encode(kp.getPublic().getEncoded(), Base64.DEFAULT)));
-            }
+            //}
         }
         catch (Exception ex) {
             Log.d(TAG, ex.getMessage());
