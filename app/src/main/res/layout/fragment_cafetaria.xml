@@ -183,4 +183,17 @@
 
     </TableRow>
 
+    <TableRow>
+
+        <TextView
+            android:id="@+id/order_error"
+            android:text="@string/cafetaria_order_error"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/login_button_horizontal_margin"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:visibility="invisible"/>
+
+    </TableRow>
+
 </TableLayout>

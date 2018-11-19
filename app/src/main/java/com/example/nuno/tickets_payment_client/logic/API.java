@@ -38,7 +38,7 @@ public class API {
 
     private static final String TAG = "API";
     private static final String EMULATOR_IP = "10.0.2.2";
-    private static final String LOCAL_IP_ADDRESS = "192.168.1.4";
+    private static final String LOCAL_IP_ADDRESS = "10.227.155.2";
     private static String server_ip = LOCAL_IP_ADDRESS;
 
     public static void getShows(final ShowsFragment showsFragment){
@@ -291,4 +291,61 @@ public class API {
         queue.add(jsonObjectRequest);
     }
 
+    public static void orderCafetaria(final CafetariaFragment cafetariaFragment, String messageEncoded) {
+        RequestQueue queue = Volley.newRequestQueue(cafetariaFragment.getContext());
+        String url = "http://" + server_ip +":3000/users/order";
+
+        final JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("message", messageEncoded);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, "buying ticket success");
+                Snackbar snackbar = Snackbar.make(cafetariaFragment.getActivity().findViewById(R.id.cafetaria_layout),
+                        R.string.cafetaria_successs_order, Snackbar.LENGTH_LONG);
+
+                snackbar.show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "buying ticket error");
+                Snackbar snackbar = Snackbar.make(cafetariaFragment.getActivity().findViewById(R.id.cafetaria_layout),
+                        R.string.cafetaria_error_order, Snackbar.LENGTH_LONG);
+
+                snackbar.show();
+
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+    }
+
+    public static void validateVouchers(final CafetariaFragment cafetariaFragment, JSONObject vouchers) {
+        RequestQueue queue = Volley.newRequestQueue(cafetariaFragment.getContext());
+        String url = "http://" + server_ip +":3000/validation/vouchers";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, vouchers, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, "vouchers are valid");
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "vouchers are invalid");
+
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+    }
 }

@@ -17,4 +17,8 @@ public class Voucher {
     public String getType() {
         return type;
     }
+
+    public String getUuid() {
+        return uuid;
+    }
 }

@@ -25,9 +25,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.UnrecoverableEntryException;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -38,10 +48,6 @@ public class CafetariaFragment extends Fragment {
     private int nOfFoodVouchers = 0;
     private int nOfDrinkVouchers = 0;
     private int nOfFivePercentVouchers = 0;
-    private int nOfNoneVouchers = 2;
-    private boolean fivePercentVouchersUsed = false;
-    private int positionOfvalueSpinner1 = 0;
-    private int positionOfvalueSpinner2 = 0;
 
     private EditText nOfPopCornEditText;
     private EditText nOfSandwichEditText;
@@ -74,102 +80,7 @@ public class CafetariaFragment extends Fragment {
         nOfSodaEditText = getActivity().findViewById(R.id.cafetaria_quantity_of_soda_holder);
 
         spinner1 = getActivity().findViewById(R.id.cafetaria_spinner_1);
-        /*spinner1.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("CAFETARIA", spinner1.getSelectedItem().toString());
-                String value = spinner1.getSelectedItem().toString();
-                Log.d("CAFETARIA", Integer.toString(position));
-                // updateVoucher(spinner1, valueSpinner1);
-                if (value.equals("FOOD")) {
-                    if (nOfFoodVouchers > 0){
-                        nOfFoodVouchers--;
-                        positionOfvalueSpinner1 = 1;
-                    }
-                    else spinner1.setSelection(positionOfvalueSpinner1);
-                }
-                else if (value.equals("DRINK")) {
-                    if (nOfDrinkVouchers > 0) {
-                        nOfDrinkVouchers--;
-                        positionOfvalueSpinner1 = 2;
-                    }
-                    else spinner1.setSelection(positionOfvalueSpinner1);
-                }
-                else if (value.equals("FIVEPERCENTE")) {
-                    if (nOfFivePercentVouchers > 0 && !fivePercentVouchersUsed) {
-                        nOfFivePercentVouchers--;
-                        positionOfvalueSpinner1 = 3;
-                        fivePercentVouchersUsed = true;
-                    }
-                    else spinner1.setSelection(positionOfvalueSpinner1);
-                }
-                else if (value.equals("NONE")) {
-                    if (nOfNoneVouchers > 0) {
-                        nOfNoneVouchers--;
-                        positionOfvalueSpinner1 = 0;
-                    }
-                    else spinner1.setSelection(positionOfvalueSpinner1);
-                }
-
-                if (position == positionOfvalueSpinner1)
-                    restoreOldValue(positionOfvalueSpinner1);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
-
         spinner2 = getActivity().findViewById(R.id.cafetaria_spinner_2);
-        /*spinner2.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("CAFETARIA", spinner2.getSelectedItem().toString());
-                String value = spinner2.getSelectedItem().toString();
-                Log.d("CAFETARIA", Integer.toString(position));
-                // updateVoucher(spinner1, valueSpinner1);
-                if (value.equals("FOOD")) {
-                    if (nOfFoodVouchers > 0){
-                        nOfFoodVouchers--;
-                        positionOfvalueSpinner2 = 1;
-                    }
-                    else spinner1.setSelection(positionOfvalueSpinner2);
-                }
-                else if (value.equals("DRINK")) {
-                    if (nOfDrinkVouchers > 0) {
-                        nOfDrinkVouchers--;
-                        positionOfvalueSpinner2 = 2;
-                    }
-                    else spinner1.setSelection(positionOfvalueSpinner2);
-                }
-                else if (value.equals("FIVEPERCENTE") && !fivePercentVouchersUsed) {
-                    if (nOfFivePercentVouchers > 0) {
-                        nOfFivePercentVouchers--;
-                        positionOfvalueSpinner2 = 3;
-                        fivePercentVouchersUsed = true;
-                    }
-                    else spinner1.setSelection(positionOfvalueSpinner2);
-                }
-                else if (value.equals("NONE")) {
-                    if (nOfNoneVouchers > 0) {
-                        nOfNoneVouchers--;
-                        positionOfvalueSpinner2 = 0;
-                    }
-                    else spinner1.setSelection(positionOfvalueSpinner2);
-                }
-
-                if (position == positionOfvalueSpinner2)
-                    restoreOldValue(positionOfvalueSpinner2);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
 
         SharedPreferences sp = this.getActivity().getSharedPreferences("Login", MODE_PRIVATE);
         User user = MainActivity.getUserSession(sp);
@@ -183,8 +94,9 @@ public class CafetariaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String input = nOfPopCornEditText.getText().toString();
+                int nOfPopCorn = 0;
                 if (validateOrderQuantity(input)){
-                    int nOfPopCorn = Integer.valueOf(nOfPopCornEditText.getText().toString());
+                    nOfPopCorn = Integer.valueOf(nOfPopCornEditText.getText().toString());
                 }
                 else {
                     nOfPopCornEditText.setError("Only non negative numbers");
@@ -192,8 +104,9 @@ public class CafetariaFragment extends Fragment {
                 }
 
                 input = nOfSandwichEditText.getText().toString();
+                int nOfSandwich = 0;
                 if (validateOrderQuantity(input)){
-                    int nOfSandwich = Integer.valueOf(nOfSandwichEditText.getText().toString());
+                    nOfSandwich = Integer.valueOf(nOfSandwichEditText.getText().toString());
                 }
                 else {
                     nOfSandwichEditText.setError("Only non negative numbers");
@@ -201,8 +114,9 @@ public class CafetariaFragment extends Fragment {
                 }
 
                 input = nOfCoffeeEditText.getText().toString();
+                int nOfCoffee = 0;
                 if (validateOrderQuantity(input)){
-                    int nOfCoffee = Integer.valueOf(nOfCoffeeEditText.getText().toString());
+                    nOfCoffee = Integer.valueOf(nOfCoffeeEditText.getText().toString());
                 }
                 else {
                     nOfCoffeeEditText.setError("Only non negative numbers");
@@ -210,8 +124,9 @@ public class CafetariaFragment extends Fragment {
                 }
 
                 input = nOfSodaEditText.getText().toString();
+                int nOfSoda = 0;
                 if (validateOrderQuantity(input)){
-                    int nOfSoda = Integer.valueOf(nOfSodaEditText.getText().toString());
+                    nOfSoda = Integer.valueOf(nOfSodaEditText.getText().toString());
                 }
                 else {
                     nOfSodaEditText.setError("Only non negative numbers");
@@ -219,8 +134,64 @@ public class CafetariaFragment extends Fragment {
                 }
 
                 String voucher1Type = spinner1.getSelectedItem().toString();
+                JSONArray vouchers = new JSONArray();
+
+                ArrayList<Voucher> voucherTypeSpinner1 = getVoucherByType(voucher1Type);
+                if (voucherTypeSpinner1.size() > 0) {
+                    vouchers.put(voucherTypeSpinner1.get(0).getUuid());
+                }
+                else if (!voucher1Type.equals("NONE")) {
+                    ((TextView)getActivity().findViewById(R.id.order_error)).setText(R.string.cafetaria_order_error);
+                    getActivity().findViewById(R.id.order_error).setVisibility(View.VISIBLE);
+                    return;
+                }
+
                 String voucher2Type = spinner2.getSelectedItem().toString();
-                Log.d("CAFETARIA", "chamando a api");
+                if (voucher1Type.equals("FIVEPERCENT") && voucher2Type.equals("FIVEPERCENT")) {
+                    ((TextView)getActivity().findViewById(R.id.order_error)).setText(R.string.cafetaria_fivepercent_order_error);
+                    getActivity().findViewById(R.id.order_error).setVisibility(View.VISIBLE);
+                }
+                ArrayList<Voucher> voucherTypeSpinner2 = getVoucherByType(voucher2Type);
+                if (voucherTypeSpinner2.size() > 0) {
+                    vouchers.put(voucherTypeSpinner2.get(0).getUuid());
+                }
+                else if (!voucher2Type.equals("NONE")){
+                    ((TextView)getActivity().findViewById(R.id.order_error)).setText(R.string.cafetaria_order_error);
+                    getActivity().findViewById(R.id.order_error).setVisibility(View.VISIBLE);
+                    return;
+                }
+
+                SharedPreferences sp = getActivity().getSharedPreferences("Login", MODE_PRIVATE);
+                User user = MainActivity.getUserSession(sp);
+
+                JSONObject orderJson = new JSONObject();
+                try {
+                    orderJson.put("uuid", user.getUserUUID().toString());
+                    orderJson.put("vouchers", vouchers);
+                    API.validateVouchers(CafetariaFragment.this, orderJson);
+                    JSONObject orderElements = new JSONObject();
+                    orderElements.put("coffee", nOfCoffee);
+                    orderElements.put("soda", nOfSoda);
+                    orderElements.put("popcorn", nOfPopCorn);
+                    orderElements.put("sandwich", nOfSandwich);
+                    orderJson.put("order", orderElements);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                KeyStore keyStore = null;
+                try {
+                    keyStore = KeyStore.getInstance("AndroidKeyStore");
+                    keyStore.load(null);
+                    KeyStore.Entry entry = keyStore.getEntry(user.getUsername(), null);
+                    PrivateKey privateKey = ((KeyStore.PrivateKeyEntry) entry).getPrivateKey();
+
+                    JwtBuilder jws = Jwts.builder();
+                    Log.d("JWT", jws.setPayload(orderJson.toString()).signWith(privateKey).compact());
+                    API.orderCafetaria(CafetariaFragment.this, jws.setPayload(orderJson.toString()).signWith(privateKey).compact());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -257,22 +228,16 @@ public class CafetariaFragment extends Fragment {
         return numberOfVouchers;
     }
 
-    public void restoreOldValue(int value) {
-        switch (value) {
-            case 0: //NONE
-                nOfNoneVouchers++;
-                break;
-            case 1: //FOOD
-                nOfFoodVouchers++;
-                break;
-            case 2: //DRINK
-                nOfDrinkVouchers++;
-                break;
-            case 3:  //FIVEPERENT
-                nOfFivePercentVouchers++;
-                fivePercentVouchersUsed = false;
-                break;
+    public ArrayList<Voucher> getVoucherByType(String type) {
+        ArrayList<Voucher> typeVoucher = new ArrayList<>();
+
+        for (Voucher voucher: userVouchers) {
+            if (voucher.getType().equals(type)) {
+                typeVoucher.add(voucher);
+            }
         }
+
+        return typeVoucher;
     }
 
 }

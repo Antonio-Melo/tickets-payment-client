@@ -130,6 +130,10 @@
         <item>DRINK</item>
         <item>FIVEPERCENT</item>
     </string-array>
+    <string name="cafetaria_order_error">You dont have enough vouchers</string>
+    <string name="cafetaria_fivepercent_order_error">You cant use two fivepercent vouchers</string>
+    <string name="cafetaria_successs_order">Order Bought!</string>
+    <string name="cafetaria_error_order">Error on buying order!</string>
     <!-- Cafetaria fragment ends -->
 
     <!-- Transactions fragment begins -->
