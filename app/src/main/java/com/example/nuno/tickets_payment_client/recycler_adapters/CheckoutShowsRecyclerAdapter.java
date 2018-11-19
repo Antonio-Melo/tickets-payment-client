@@ -18,10 +18,15 @@ import java.util.ArrayList;
 public class CheckoutShowsRecyclerAdapter extends RecyclerView.Adapter<CheckoutShowsRecyclerAdapter.CheckoutShowViewHolder> {
 
     private ArrayList<Show> checkoutShows;
+    private ArrayList<Integer> quantities;
     private int numberOfQuantitiesFilled = 0;
 
     public CheckoutShowsRecyclerAdapter(ArrayList<Show> checkoutShows) {
         this.checkoutShows = checkoutShows;
+        this.quantities = new ArrayList<>();
+        for (int i = 0; i < this.checkoutShows.size(); i++) {
+            this.quantities.add(0);
+        }
     }
 
     @NonNull
@@ -37,7 +42,7 @@ public class CheckoutShowsRecyclerAdapter extends RecyclerView.Adapter<CheckoutS
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CheckoutShowViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final CheckoutShowViewHolder viewHolder, final int i) {
         viewHolder.nameText.setText(checkoutShows.get(i).getName());
         viewHolder.artistText.setText(checkoutShows.get(i).getArtist());
 
@@ -57,6 +62,7 @@ public class CheckoutShowsRecyclerAdapter extends RecyclerView.Adapter<CheckoutS
 
             @Override
             public void afterTextChanged(Editable s) {
+                quantities.set(i, Integer.valueOf(viewHolder.quantityEditText.getText().toString()));
                 numberOfQuantitiesFilled++;
             }
         });
@@ -68,6 +74,10 @@ public class CheckoutShowsRecyclerAdapter extends RecyclerView.Adapter<CheckoutS
 
     public int getNumberOfQuantitiesFilled() {
         return numberOfQuantitiesFilled;
+    }
+
+    public ArrayList<Integer> getQuantities() {
+        return quantities;
     }
 
     @Override
